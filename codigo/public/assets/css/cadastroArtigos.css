@@ -1,6 +1,5 @@
 body{
-    display: flex;
-    background-color:grey;
+    background-color:rgb(199, 217, 223);
     justify-content: center; 
     margin: 1%;   
 }
@@ -27,7 +26,7 @@ label.subt{
 }
 
 .artigo{
-    background-color: #2e5164;
+    background-color: #6a98b1;
     padding: 4%;
     border-radius: 15px;  
     width: 100%;
@@ -56,3 +55,14 @@ div button a{
     text-decoration: none;
     color: white;
 }
+.cabecalho{
+    display: flex;
+   align-items: center;
+    margin: 10px;
+}
+.logo{
+    border-radius: 30px;
+    width: 8%;
+    margin-right: 10px;
+}
+
