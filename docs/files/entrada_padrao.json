@@ -8,3 +8,21 @@
   "recorrente": true,
   "data_recorrencia": null
 }
+{
+  "titulo": "...",
+  "subtitulo": "...",
+  "data": "02/05/2022",
+  "Conteudo": "...",
+  "ID": "1",
+  "imagem": "...",
+  "autor": "..."
+}
+
+{ 
+  "titulo” : "autor", 
+  "subtitulo" : "Açoes", 
+  "conteudodeapresentacao" : " texto curto", 
+  "conteudoinformativo" : "texto completo", 
+  "imagens" : "" , 
+  "autoria": "Felipe Gabriel” 
+}

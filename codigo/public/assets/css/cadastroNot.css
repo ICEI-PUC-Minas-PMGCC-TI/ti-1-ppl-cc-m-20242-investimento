@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: cornflowerblue;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; 
+}
+
+/* Estilo do contêiner do cabeçalho */
+.header-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+/* Estilo da logo no cabeçalho */
+.logo {
+    width: 50px;
+    height: auto;
+    margin-left: 20px;
+}
+
+/* Estilo do título no cabeçalho */
+header h1 {
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    width: 100%;
+}
+
+body {
+    background-color: white;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
