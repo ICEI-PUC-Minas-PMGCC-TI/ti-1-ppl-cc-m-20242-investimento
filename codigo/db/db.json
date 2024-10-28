@@ -114,5 +114,28 @@
       "horizonte_tempo": "",
       "tolerancia_risco": ""
     }
-  ]
+  ],
+"comportamento" : [
+    {
+      "id_usuario": "1",
+      "nome_usuario": "Victor Guimaraes",
+      "pergunta": "1",
+      "resposta": "a",
+      "classificacao": "Moderado"
+    },
+    {
+      "id_usuario": "2",
+      "nome_usuario": "Fulano",
+      "pergunta": "2",
+      "resposta": "b",
+      "classificacao": "Conservador"
+    },
+    {
+      "id_usuario": "3",
+      "nome_usuario": "Ciclano",
+      "pergunta": "3",
+      "resposta": "a",
+      "classificacao": "Arriscado"
+    }
+      ]
 }
