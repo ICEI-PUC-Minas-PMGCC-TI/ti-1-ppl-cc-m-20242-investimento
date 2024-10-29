@@ -1,79 +1,65 @@
-/* Estilo do corpo */
+
 body {
     background-color: white;
     height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Estilo do formulário */
-form {
-    color: white;
-    background-color: cornflowerblue;
-    width: 600px;
-    padding: 20px;
-    border-radius: 20px;
-}
-
-/* Estilo das entradas */
-.input {
-    padding: 10px;
-    margin: auto auto;
-    display: flex;
     flex-direction: column;
-    width: 50%;
+    align-items: center;
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
 
-/* Ocultar inicialmente os campos específicos de analista e investidor */
-#campos-analista, #campos-investidor {
-    display: none; /* Os campos só aparecerão após a escolha do tipo */
-}
-
-.container{
-        display: flex;
-        justify-content: space-around;
-        margin: 20px;
-}
-
-.section {
-    padding: 20px;
-    width: 30%;
-}
-
-/* Estilo do cabeçalho */
 header {
     background-color: cornflowerblue;
+    width: 100%;
     padding: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: fixed; /* Mantém o cabeçalho fixo no topo */
+    position: fixed;
     top: 0;
-    width: 100%;
-    z-index: 1000; /* Garante que o cabeçalho fique acima do conteúdo */
+    z-index: 1000;
 }
 
-/* Estilo do contêiner do cabeçalho */
 .header-container {
     display: flex;
     align-items: center;
     width: 100%;
 }
 
-/* Estilo da logo no cabeçalho */
 .logo {
     width: 50px;
-    height: auto;
     margin-right: 20px;
 }
 
-/* Estilo do título no cabeçalho */
 header h1 {
     color: white;
     font-size: 24px;
+    margin: 0;
     text-align: center;
     width: 100%;
+}
+
+.container {
+    margin-top: 100px;
+    width: 80%;
+    max-width: 600px;
+}
+
+form {
+    background-color: cornflowerblue;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+}
+
+.pergunta {
+    display: none; 
+    margin-bottom: 15px;
+}
+
+.pergunta.active {
+    display: block; 
 }
 
 button {
@@ -81,9 +67,9 @@ button {
     color: cornflowerblue;
     border: 2px solid cornflowerblue;
     padding: 10px 20px;
-    border-radius: 10px;
-    font-size: 16px;
+    border-radius: 5px;
     cursor: pointer;
+    width: 100%;
     transition: background-color 0.3s, color 0.3s;
 }
 
@@ -91,3 +77,9 @@ button:hover {
     background-color: rgb(98, 133, 199);
     color: white;
 }
+
+#restart-btn {
+    margin-top: 20px;
+    display: none;
+}
+
