@@ -70,6 +70,18 @@
             font-weight: bold;
         }
 
+        .image-frame {
+            width: 100%px;  /* Set your desired frame width */
+            height: 60px; /* Set your desired frame height */
+            overflow: hidden; /* Hide any overflow outside the frame */
+        }
+
+        .image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Fit the image, cropping anything outside */
+        }
+
     </style>
     <header>
         <nav>
@@ -153,7 +165,7 @@
             rendaBody.innerHTML = "";
             rendas.forEach(renda => {
                 totalRenda += renda.valor;
-                const row = `<tr><td>${renda.nome}</td><td>R$${renda.valor.toFixed(2)}</td><td>R$${renda.valor.toFixed(2)}</td></tr>`;
+                const row = `<tr><td>${renda.nome}</td><td>R$${renda.valor.toFixed(2)}</td><td>R$${renda.valor_renda.toFixed(2)}</td></tr>`;
                 rendaBody.innerHTML += row;
             });
         
@@ -170,9 +182,13 @@
             noticias.forEach(noticia => {
                 const noticiaElement = `
                     <div class="noticia">
-                        <h3>${noticia.titulo}</h3>
+                        <div class="image-frame">
+                            <img src="${noticia.imagem}" alt="${noticia.titulo}">
+                        </div>
+                        <a href="${noticia.link}">
+                            <h3>${noticia.titulo}</h3>
+                        </a>
                         <p>${noticia.data}</p>
-                        <p>${noticia.descricao}</p>
                     </div>
                 `;
                 noticiasContainer.innerHTML += noticiaElement;
@@ -194,6 +210,7 @@
                     tipo: "gasto",
                     usuario_id: "12345", // Substitua pelo ID real do usuário
                     recorrente: true,
+                    data: Date.now()
                 })
             });
             carregarGastos();
@@ -203,6 +220,7 @@
         async function adicionarRenda() {
             const nome = prompt("Digite o nome do investimento:");
             const valor = parseFloat(prompt("Digite o valor investido:"));
+            const valor_renda = parseFloat(prompt("Digite a renda média"));
             if (!nome || isNaN(valor)) return alert("Entrada inválida!");
         
             await fetch(`${apiUrl}/entrada`, {
@@ -211,9 +229,11 @@
                 body: JSON.stringify({
                     nome,
                     valor,
+                    valor_renda,
                     tipo: "investimento",
                     usuario_id: "12345", // Substitua pelo ID real do usuário
                     recorrente: true,
+                    data: Date.now()
                 })
             });
             carregarRenda();

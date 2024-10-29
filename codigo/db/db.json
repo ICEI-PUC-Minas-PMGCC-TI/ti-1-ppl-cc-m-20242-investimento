@@ -115,6 +115,51 @@
       "tolerancia_risco": ""
     }
   ],
+  "noticias": [
+    {
+      "titulo": "Suspeitos de roubo trocam tiros com a PM, um é preso e outro morre em BH",
+      "imagem": "https://medias.itatiaia.com.br/dims4/default/580f6ff/2147483647/strip/true/crop/1199x675+1+0/resize/1000x563!/format/webp/quality/90/?url=https%3A%2F%2Fk2-prod-radio-itatiaia.s3.us-east-1.amazonaws.com%2Fbrightspot%2F55%2Fcf%2F5a37c02165dcd626e23cb655c270%2Fa-pm-enviou-varias-viaturas-ao-local-para-ajudar-na-recaptura-dos-adolescente-91da38ee-c38f-4f15-99ce-2f69f4b5be71.jpg",
+      "data": "28/10/2024",
+      "link": "https://www.itatiaia.com.br/cidades/2024/10/28/suspeitos-de-roubo-trocam-tiros-com-a-pm-um-e-preso-e-outro-morre-em-bh"
+    },
+    {
+      "titulo": "Mancha x Máfia: investigação sobre emboscada ficará a cargo do Gaeco, do MPSP",
+      "imagem": "https://medias.itatiaia.com.br/dims4/default/2a24933/2147483647/strip/true/crop/4160x2342+0+389/resize/1000x563!/format/webp/quality/90/?url=https%3A%2F%2Fk2-prod-radio-itatiaia.s3.us-east-1.amazonaws.com%2Fbrightspot%2Fdb%2F90%2F14f6a0b644e185d8b552315cd85d%2Fwhatsapp-image-2024-10-27-at-15-54-15.jpeg",
+      "data": "27/10/2024",
+      "link": "https://www.itatiaia.com.br/esportes/futebol/cruzeiro/2024/10/27/mancha-x-mafia-investigacao-sobre-emboscada-ficara-a-cargo-do-gaeco-do-mpsp"
+    }
+  ],
+  "entrada": [
+    {
+      "id": "9f52",
+      "nome": "Parcela do agiota",
+      "valor": 300,
+      "tipo": "gasto",
+      "usuario_id": "12345",
+      "recorrente": true,
+      "data": 1730112173084
+    },
+    {
+      "id": "fc68",
+      "nome": "Jogo do bicho",
+      "valor": 3000,
+      "valor_renda": 150,
+      "tipo": "investimento",
+      "usuario_id": "12345",
+      "recorrente": true,
+      "data": 1730112187214
+    },
+    {
+      "id": "7d42",
+      "nome": "Biqueira",
+      "valor": 40000,
+      "valor_renda": 3000,
+      "tipo": "investimento",
+      "usuario_id": "12345",
+      "recorrente": true,
+      "data": 1730112245652
+    }
+  ],
   "artigos": [
     {
       "id": "0",
