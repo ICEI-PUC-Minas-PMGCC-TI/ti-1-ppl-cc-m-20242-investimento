@@ -1,4 +1,106 @@
-// Mostra a Imagem a partir do link inserido
+//Função para salvar dados
+function salvarDados() {
+    const titulo = document.getElementById('titulo').value;
+    const subTitulo = document.getElementById('subTitulo').value;
+    const contAp = document.getElementById('contAp').value;
+    const contIn = document.getElementById('contIn').value;
+    const autoria = document.getElementById('autoria').value;
+    const data = document.getElementById('data').value;
+    const imagem = document.getElementById('linkImagem').value;
+
+    //Condicional para preencher todos os campos
+    if (!titulo || !subTitulo || !contAp || !contIn || !autoria || !data) {
+        alert('Por favor, preencha todos os campos obrigatórios!');
+        return;
+    }
+
+    // Faz os ids serem sequenciais
+    fetch('http://localhost:3000/artigos')
+        .then(response => response.json())
+        .then(artigos => {
+            // Calcula o próximo ID
+            const nextId = artigos.length > 0 ? (Math.max(...artigos.map(a => parseInt(a.id))) + 1).toString() : '1';
+
+            const dados = {
+                id: nextId,  // Define o novo ID como string
+                titulo,
+                subTitulo,
+                contAp,
+                contIn,
+                autoria,
+                data,
+                imagem 
+            };
+            //Manda os dados para o json
+            return fetch('http://localhost:3000/artigos', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dados)
+            });
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Artigo salvo:', data);
+            document.getElementById('formArtigo').reset();
+            document.getElementById('imagemPreview').style.display = 'none';
+            mostrarArtigos(); // Atualiza a lista de artigos após salvar
+        })
+        .catch(error => console.error('Erro ao salvar o artigo:', error));
+}
+
+
+//Mostra os artigos quando o botão(mostrar artigos) é clicado
+function mostrarArtigos() {
+    fetch('http://localhost:3000/artigos')
+        .then(response => response.json())
+        .then(data => {
+            let resultado = `<h2>Artigos Inseridos</h2>`;
+            data.forEach((artigo) => {
+                resultado += `
+                    <div id="mostra">
+                        <h3>Artigo ${artigo.id}</h3>
+                        <p><strong>Título:</strong> ${artigo.titulo}</p>
+                        <p><strong>Sub-título:</strong> ${artigo.subTitulo}</p>
+                        <p><strong>Conteúdo de Apresentação:</strong> ${artigo.contAp}</p>
+                        <p><strong>Conteúdo Informativo:</strong> ${artigo.contIn}</p>
+                        <p><strong>Autoria:</strong> ${artigo.autoria}</p>
+                        <p><strong>Data:</strong> ${artigo.data}</p>
+                        <img src="${artigo.imagem}" alt="Imagem Inserida" class="img-fluid border border-light" style="max-width: 300px;">
+                        <button class="btn btn-danger" onclick="excluirArtigo(${artigo.id})">Excluir</button>
+                        <hr>
+                    </div>
+                `;
+            });
+            document.getElementById('resultado').innerHTML = resultado;
+        })
+        .catch(error => console.error('Erro ao mostrar artigos:', error));
+}
+//Função para excluir os artigos, o botão de exclusão fica disponivel quando tem artigo criado e quando vc mostra os artigos
+function excluirArtigo(id) {
+    fetch(`http://localhost:3000/artigos/${id}`, {
+        method: 'DELETE'
+    })
+    .then(response => {
+        if (response.ok) {
+            alert('Artigo excluído com sucesso!');
+            mostrarArtigos(); // Atualiza a lista de artigos
+        } else {
+            alert('Erro ao excluir artigo!');
+        }
+    })
+    .catch(error => console.error('Erro ao excluir artigo:', error));
+}
+
+//Configuração dos botões Mostrar e Salvar 
+document.getElementById('btnMostrar').addEventListener('click', mostrarArtigos);
+document.getElementById('btnSalvar').addEventListener('click', function(event) {
+    event.preventDefault();
+    salvarDados();
+});
+
+//Esta parte aqui ajusta a visualização da imagem
 document.getElementById('linkImagem').addEventListener('input', function() {
     const imagemPreview = document.getElementById('imagemPreview');
     const url = this.value;
@@ -9,106 +111,4 @@ document.getElementById('linkImagem').addEventListener('input', function() {
     } else {
         imagemPreview.style.display = 'none'; // Esconde se não houver URL
     }
-});
-
-
-// Função para salvar dados no localStorage
-function salvarDados() {
-    const titulo = document.getElementById('titulo').value;
-    const subTitulo = document.getElementById('subTitulo').value;
-    const contAp = document.getElementById('contAp').value;
-    const contIn = document.getElementById('contIn').value;
-    const autoria = document.getElementById('autoria').value;
-    const data = document.getElementById('data').value;
-    const imagem = document.getElementById('linkImagem').value; // Pega a URL da imagem
-
-    // Verifica se todos os campos obrigatórios estão preenchidos
-    if (!titulo || !subTitulo || !contAp || !contIn || !autoria || !data) {
-        alert('Por favor, preencha todos os campos obrigatórios!');
-        return; // Não permite salvar se os campos obrigatórios não estão preenchidos
-    }
-
-    const dados = {
-        titulo,
-        subTitulo,
-        contAp,
-        contIn,
-        autoria,
-        data,
-        imagem 
-    };
-
-    const db = leDados(); // Lê os dados existentes
-    db.artigos.push(dados); // Adiciona o novo artigo
-    salvaDados(db); // Salva os dados atualizados
-
-    // Limpa os campos do formulário
-    document.getElementById('titulo').value = '';
-    document.getElementById('subTitulo').value = '';
-    document.getElementById('contAp').value = '';
-    document.getElementById('contIn').value = '';
-    document.getElementById('autoria').value = '';
-    document.getElementById('data').value = '';
-    document.getElementById('linkImagem').value = '';
-    document.getElementById('imagemPreview').style.display = 'none'; // Esconde a prévia
-}
-
-
-
-// Função para ler dados do localStorage
-function leDados() {
-    let strDados = localStorage.getItem('db');
-    if (strDados) {
-        return JSON.parse(strDados);
-    } else {
-        return { artigos: [] }; // Retorna um array vazio se não houver dados
-    }
-}
-
-function salvaDados(dados) {
-    localStorage.setItem('db', JSON.stringify(dados));
-}
-
-// Função do botão mostrar, quando acionado mostra tudo o que foi inserido
-document.getElementById('btnMostrar').addEventListener('click', function() {
-    const db = leDados(); // Lê os dados
-    let resultado = `<h2>Artigos Inseridos</h2>`;
-    
-    db.artigos.forEach((artigo, index) => {
-        resultado += `
-            <div id="mostra">
-                <h3>Artigo ${index + 1}</h3>
-                <p><strong>Título:</strong> ${artigo.titulo}</p>
-                <p><strong>Sub-título:</strong> ${artigo.subTitulo}</p>
-                <p><strong>Conteúdo de Apresentação:</strong> ${artigo.contAp}</p>
-                <p><strong>Conteúdo Informativo:</strong> ${artigo.contIn}</p>
-                <p><strong>Autoria:</strong> ${artigo.autoria}</p>
-                <p><strong>Data:</strong> ${artigo.data}</p>
-                <img src="${artigo.imagem}" alt="Imagem Inserida" class="img-fluid border border-light" style="max-width: 300px;">
-                <hr>
-            </div>
-        `;
-    });
-
-    // Insere os dados no elemento "resultado"
-    document.getElementById('resultado').innerHTML = resultado;
-});
-
-// Ajusta o tamanho do campo de texto conforme é preenchido
-function ajustarAlturaTextarea(textarea) {
-    textarea.style.height = 'auto'; // Reseta a altura
-    textarea.style.height = textarea.scrollHeight + 'px'; // Ajusta para o conteúdo
-}
-
-// Associa a função de ajuste de altura a todos os textareas
-const textareas = document.querySelectorAll('textarea');
-textareas.forEach(textarea => {
-    textarea.addEventListener('input', () => ajustarAlturaTextarea(textarea));
-});
-
-// Adiciona evento para salvar dados ao clicar em "Salvar"
-document.getElementById('btnSalvar').addEventListener('click', function(event) {
-    event.preventDefault(); // Evita o envio do formulário
-    salvarDados();
-    
 });
