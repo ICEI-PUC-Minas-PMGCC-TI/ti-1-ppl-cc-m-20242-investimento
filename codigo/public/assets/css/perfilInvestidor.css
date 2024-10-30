@@ -1,4 +1,4 @@
-
+/* Body Styling */
 body {
     background-color: white;
     height: 100vh;
@@ -9,6 +9,7 @@ body {
     font-family: Arial, sans-serif;
 }
 
+/* Header Styling */
 header {
     background-color: cornflowerblue;
     width: 100%;
@@ -40,6 +41,7 @@ header h1 {
     width: 100%;
 }
 
+/* Container and Form Styling */
 .container {
     margin-top: 100px;
     width: 80%;
@@ -54,12 +56,12 @@ form {
 }
 
 .pergunta {
-    display: none; 
+    display: none; /* Hide all questions initially */
     margin-bottom: 15px;
 }
 
 .pergunta.active {
-    display: block; 
+    display: block; /* Show the active question */
 }
 
 button {
@@ -83,3 +85,20 @@ button:hover {
     display: none;
 }
 
+canvas {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+#classificationChart {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+.chart-container {
+    pointer-events: none; /* Prevent all mouse events */
+}
