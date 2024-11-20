@@ -1,5 +1,7 @@
+<!--Feito por Felipe Gabriel de Carvalho-->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,21 +14,72 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="assets/css/painelArtigo.css"> <!--Mudar a referencia do css-->
 </head>
+
 <body>
     <header>
         <img src="assets/images/logo.png" alt="Logo do site" class="logo">
         <ul>
-        <li><a href="">PAGINA INICIA</a>L</li>
-        <li><a href="">GUIA DE OPÇÕES</a></li>
-        <li><a href="painelArtigo.html">PESQUISA</a></li>
-    </ul>
+            <li><a href="">PAGINA INICIA</a>L</li>
+            <li><a href="">GUIA DE OPÇÕES</a></li>
+            <li><a href="painelArtigo.html">PESQUISA</a></li>
+        </ul>
     </header>
-    <h1 class="titulo">Tipos de investimentos</h1>
-    <h2 class="subtitulo"> Ações</h2>
-    <p class="autoria"> Antônio Marques Nandes</p>
-    <p class="data">10/10/2023</p>
-    <p class="contAprenstação">As ações representam frações do capital de uma empresa e são uma forma de os investidores se tornarem sócios dela. Ao adquirir ações, você tem direito a participar dos lucros da empresa, que podem ser distribuídos na forma de dividendos. O mercado de ações é dinâmico e pode ser influenciado por diversos fatores, como a performance da empresa, condições econômicas e eventos globais. As ações podem ser compradas e vendidas em bolsas de valores, e seu preço flutua com base na oferta e na demanda.</p>
-    <p class="contInformativo">No coração do mercado financeiro, as ações surgem como as estrelas que atraem investidores em busca de crescimento e oportunidades. Ao comprar uma ação, você não está apenas adquirindo um pedaço de papel; você está se tornando um sócio de uma empresa, participando de sua trajetória de sucesso e, potencialmente, colhendo os frutos desse crescimento. As ações representam a esperança, a inovação e o dinamismo das empresas que moldam o mundo. Cada ação é um convite para embarcar em uma jornada de transformação e lucros. Quando uma empresa cresce, suas ações tendem a valorizar, refletindo o aumento de seu valor de mercado. Mas cuidado: esse caminho pode ser repleto de volatilidade. O preço das ações pode subir e descer em questão de minutos, influenciado por notícias, tendências do setor e até mesmo por emoções do mercado. Aqui, o conhecimento é seu melhor aliado. Além disso, as ações são classificadas em diferentes categorias, como ações ordinárias, que oferecem direito a voto nas assembleias, e ações preferenciais, que garantem prioridade na distribuição de dividendos. Essa diversidade permite que os investidores escolham como desejam se engajar no jogo. Portanto, entender as nuances desse investimento é fundamental para maximizar suas chances de sucesso. No mundo das ações, cada movimento conta, e cada decisão pode levar você mais perto de seus objetivos financeiros.</p>
-    <img src="assets/images/logo.png" alt="">
+    <div id="tela">
+    </div>
+   
+
+    
+    <script>
+
+        let artigos = [];
+
+        // Requisição para obter os artigos
+        fetch('http://localhost:3000/artigos')
+            .then(response => response.json())
+            .then(data => {
+                // Preenche a variável 'artigos' com os dados da API
+                artigos = data;
+                console.log(artigos); // Aqui você pode ver os artigos carregados
+
+                // Agora que os artigos foram carregados, buscamos o 'id' da URL
+                let params = new URLSearchParams(location.search);
+                let id = params.get('id');
+
+                // Encontrar o artigo pelo 'id'
+                let artigo = artigos.find(function (elem) {
+                    return elem.id == id;
+                });
+
+                let tela = document.getElementById('tela');
+                if (artigo) {
+                    tela.innerHTML = `
+                    <div class="row">
+                        <div class="col-md-12">
+                        <div id="janela">
+                         <h3>${artigo.titulo}</h3>
+                         <h4>${artigo.subTitulo}</h4>
+                                       
+                        <p> ${artigo.contAp}</p>
+                        <p>${artigo.contIn}</p>
+                        <img src="${artigo.imagem}" alt="Imagem Inserida" class="img-fluid border border-light" style="max-width: 300px;">
+                        <p>Feito por ${artigo.autoria}</p>
+                        <p> Data de inserção do artigo:  ${artigo.data}</p>
+                        </div>
+                        </div>
+                        <div class="col-md-0">
+                            
+                            
+                        </div>
+                        </div>
+
+                    `;
+                } else {
+                    tela.innerHTML = `<p>Erro ao carregar dados</p>`;
+                }
+            })
+            .catch(error => console.error('Erro ao carregar artigos:', error));
+
+    </script>
 </body>
+
 </html>

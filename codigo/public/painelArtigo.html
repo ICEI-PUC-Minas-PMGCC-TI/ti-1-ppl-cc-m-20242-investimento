@@ -1,5 +1,7 @@
+<!--Feito por Felipe Gabriel de Carvalho-->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,43 +14,84 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="assets/css/painelArtigo.css">
 </head>
+
+
+
 <body>
     <header>
         <img src="assets/images/logo.png" alt="Logo do site" class="logo">
         <ul>
-        <li>PAGINA INICIAL</li>
-        <li>GUIA DE OPÇÕES</li>
-        <li>PESQUISA</li>
-    </ul>
+            <li>PAGINA INICIAL</li>
+            <li>GUIA DE OPÇÕES</li>
+            <li>PESQUISA</li>
+            <li><a href="cadastroArtigo.html">Cadastrar Artigo</a></li>
+        </ul>
     </header>
 
     <div class="container">
-        <div class="row"> 
-            <div class="col-md-10 p1">
-                <h1 class="titulo">Tipos de investimentos</h1>
-                <ul class="subtitulo">
-                <li><a href="apresentaArtigo.html">Ações</a></li>
-                <li><a href="apresentaArtigo.html">Tesouro Direto</a></li>
-                <li><a href="apresentaArtigo.html">Criptos</a></li>
-                <li><a href="apresentaArtigo.html">FIIs</a></li>
-            </ul>
-            <h1 class="titulo">Estrategias de investimentos</h1>
-                <ul class="subtitulo">
-                <li><a href="apresentaArtigo.html">Passiva</a></li>
-                <li><a href="apresentaArtigo.html">Ativa</a></li>
-                <li><a href="apresentaArtigo.html">Diversificação</a></li>
-                
-            </ul>
+        <div class="row">
+            <div class="col-md-10 p1" id="painel">
+                <!--Os artigos são dispostos nessa sessão-->
             </div>
-            <div class="col-2 p2">
-                <h2>Leia Também</h2>
-                <h3>O que é um CDB?</h3>
-                
-                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis in aliquid reprehenderit quod eos perspiciatis voluptas quidem corrupti ratione maxime, delectus aperiam, fugit minus ex hic provident, obcaecati inventore. Odio possimus esse nostrum, iusto, voluptate dolore quis, labore error iure doloribus nulla impedit? Voluptatem vitae consequuntur explicabo quas magnam tempora, libero eum ab nulla nisi, sint praesentium laboriosam voluptatum distinctio temporibus voluptatibus unde similique sequi iure esse quasi. Rem quidem enim, minus accusantium laborum exercitationem in esse quis, tenetur ex dolore distinctio nostrum, voluptas quaerat sapiente eligendi quod vero assumenda consequuntur nesciunt iure hic. Corrupti suscipit non cum provident saepe? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis praesentium quae eveniet, minus illum veniam doloremque itaque quod quia est quas error, deserunt reprehenderit odio maiores, impedit temporibus qui quisquam. Aut dolor quod, fugiat ipsam nihil ab earum aperiam autem pariatur totam laborum nulla eos non hic, at harum voluptate!</p>
+            <div class="col-2 p2" id="info">
+                <!--Mostra um artigo aleatório nessa sessão-->
             </div>
         </div>
 
     </div>
+   
+
+    <script>
+
+        // Função que cria os artigos no formato desejado
+        function exibirArtigos() {
+            const painel = document.getElementById("painel");
+            const info = document.getElementById("info");
+
+
+            //Pega os dados do json
+            fetch('http://localhost:3000/artigos')
+                .then(response => response.json())
+                .then(artigos => {
+
+                    //Este bloco sorteia id para serem usados no "Leia também"
+                    const indiceAleatorio = Math.floor(Math.random() * artigos.length);
+                    const informacaoSorteada = artigos[indiceAleatorio];
+
+                    //tela da direita "Leia Também"
+                    info.innerHTML = `    
+                <h2>Leia Também</h2>
+                <h5><a href="apresentaArtigo.html?id=${informacaoSorteada.id}">${informacaoSorteada.subTitulo}</a></h5>
+                <p>${informacaoSorteada.contAp} </p>
+                    `
+
+                
+                    //Tela da esquerda
+                    artigos.forEach(artigo => {
+                        
+                        painel.innerHTML += `
+            <div class="artigo" id="artigo-${artigo.id}">
+                <h1 class="titulo">${artigo.titulo}</h1>
+                <ul class="subtitulo">
+                    
+                    <li><a href="apresentaArtigo.html?id=${artigo.id}">${artigo.subTitulo}</a></li>                  
+                </ul> 
+            </div>
+            <br>
+                    `;
+                    })
+                    //Tô querendo deixar a disposição dos subtitulos agrupados por titulos em comum, ou seja, se dois subtitulos tiverem o mesmo titulo eles ficam na mesma ul. Não to conseguindo resolver
+                });
+        }
+
+        // Chama a função ao carregar a página
+        window.onload = exibirArtigos;
+
+    </script>
 
 </body>
+
 </html>
+
+<!--  json-server --watch codigo/db/db.json  -->
+<!-- Alt + Shift + F   para identar  -->

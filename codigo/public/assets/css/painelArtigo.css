@@ -26,7 +26,7 @@ header ul li{
     padding: 0px 40px;
 }
 ul.subtitulo li{
-    font-size: 30px;
+    font-size: 20px;
     padding-right: 10px;
  
     
@@ -34,6 +34,7 @@ ul.subtitulo li{
 ul.subtitulo{
     background-color:rgb(199, 217, 223);
     border-radius: 10px;
+    padding: 5px 0px;
   
 }
 .logo{
@@ -43,9 +44,27 @@ ul.subtitulo{
     margin-right: 10px;
 }
 h3{
-    font-size: 22px;
+    font-size: 30px;
+    background-color: #b2c3cc;
+    padding: 5px;
+    border-radius: 10px;
+}
+h1{
+    font-size: 30px;
+
+}
+h4{
+    font-size: 20px;
 }
 a {
     text-decoration: none;
     color: black;
   }
+
+#janela{
+    justify-items: center;
+    background-color: #c9d0d4;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+}

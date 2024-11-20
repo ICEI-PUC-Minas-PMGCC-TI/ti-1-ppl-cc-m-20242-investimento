@@ -62,12 +62,34 @@ div button a{
     width: 70%;
 }
 .logo{
+    margin-left: 10px;
     border-radius: 35%;
-    width: 10%;
+    width: 5%;
     margin-right: 10px;
+
 }
 .titulo{
     font-size: 200%;
 }
 
 
+header{
+    display: flex; 
+    align-items: center;
+    background-color: #6a98b1;
+    padding: 10px;
+    font-size: 30px;
+    margin-bottom: 50px;
+ }
+
+ a {
+    text-decoration: none;
+    color: black;
+  }
+
+  ul li{
+    display: inline;
+    padding: 0px 40px;
+  
+}
+ 
