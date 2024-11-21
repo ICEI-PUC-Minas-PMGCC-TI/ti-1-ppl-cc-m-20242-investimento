@@ -16,6 +16,7 @@
 </head>
 
 <body>
+    <!--Cabeçalho-->
     <header>
         <img src="assets/images/logo.png" alt="Logo do site" class="logo">
         <ul>
@@ -24,7 +25,9 @@
             <li><a href="painelArtigo.html">PESQUISA</a></li>
         </ul>
     </header>
+
     <div id="tela">
+        <!--O artigo será apresentado nesta div-->
     </div>
    
 
@@ -37,11 +40,11 @@
         fetch('http://localhost:3000/artigos')
             .then(response => response.json())
             .then(data => {
-                // Preenche a variável 'artigos' com os dados da API
+                // Preenche a variável 'artigos' com os dados da json
                 artigos = data;
-                console.log(artigos); // Aqui você pode ver os artigos carregados
+                console.log(artigos); // Mostra os artigos carregados no console
 
-                // Agora que os artigos foram carregados, buscamos o 'id' da URL
+                // busca o 'id' da URL
                 let params = new URLSearchParams(location.search);
                 let id = params.get('id');
 
@@ -50,6 +53,7 @@
                     return elem.id == id;
                 });
 
+                //apresenta a seguinte estrutura na div#tela 
                 let tela = document.getElementById('tela');
                 if (artigo) {
                     tela.innerHTML = `
@@ -66,9 +70,7 @@
                         <p> Data de inserção do artigo:  ${artigo.data}</p>
                         </div>
                         </div>
-                        <div class="col-md-0">
-                            
-                            
+                        <div class="col-md-0">     
                         </div>
                         </div>
 

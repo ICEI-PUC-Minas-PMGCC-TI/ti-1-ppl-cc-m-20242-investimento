@@ -15,9 +15,8 @@
     <link rel="stylesheet" href="assets/css/painelArtigo.css">
 </head>
 
-
-
 <body>
+    <!-- Cabeçalho -->
     <header>
         <img src="assets/images/logo.png" alt="Logo do site" class="logo">
         <ul>
@@ -28,70 +27,136 @@
         </ul>
     </header>
 
+    <!-- Barra de Pesquisa -->
+    <div class="container mt-3">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <input type="text" id="searchInput" class="form-control rounded-pill" placeholder="Pesquisar Artigos..." oninput="filtrarArtigos()">
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <div class="row">
             <div class="col-md-10 p1" id="painel">
-                <!--Os artigos são dispostos nessa sessão-->
+                <!-- Os artigos serão dispostos nessa sessão -->
             </div>
             <div class="col-2 p2" id="info">
-                <!--Mostra um artigo aleatório nessa sessão-->
+                <!-- Mostra um artigo aleatório nessa sessão -->
             </div>
         </div>
-
     </div>
-   
 
     <script>
-
-        // Função que cria os artigos no formato desejado
+        // Função para exibir os artigos
         function exibirArtigos() {
             const painel = document.getElementById("painel");
             const info = document.getElementById("info");
 
-
-            //Pega os dados do json
+            // Pega os dados do JSON
             fetch('http://localhost:3000/artigos')
                 .then(response => response.json())
                 .then(artigos => {
-
-                    //Este bloco sorteia id para serem usados no "Leia também"
+                    // Este bloco sorteia um artigo para ser usado no "Leia também"
                     const indiceAleatorio = Math.floor(Math.random() * artigos.length);
                     const informacaoSorteada = artigos[indiceAleatorio];
 
-                    //tela da direita "Leia Também"
-                    info.innerHTML = `    
-                <h2>Leia Também</h2>
-                <h5><a href="apresentaArtigo.html?id=${informacaoSorteada.id}">${informacaoSorteada.subTitulo}</a></h5>
-                <p>${informacaoSorteada.contAp} </p>
-                    `
-
-                
-                    //Tela da esquerda
-                    artigos.forEach(artigo => {
-                        
-                        painel.innerHTML += `
-            <div class="artigo" id="artigo-${artigo.id}">
-                <h1 class="titulo">${artigo.titulo}</h1>
-                <ul class="subtitulo">
-                    
-                    <li><a href="apresentaArtigo.html?id=${artigo.id}">${artigo.subTitulo}</a></li>                  
-                </ul> 
-            </div>
-            <br>
+                    // Tela da direita "Leia Também"
+                    info.innerHTML = `
+                        <h2>Leia Também</h2>
+                        <h5><a href="apresentaArtigo.html?id=${informacaoSorteada.id}">${informacaoSorteada.subTitulo}</a></h5>
+                        <p>${informacaoSorteada.contAp}</p>
                     `;
-                    })
-                    //Tô querendo deixar a disposição dos subtitulos agrupados por titulos em comum, ou seja, se dois subtitulos tiverem o mesmo titulo eles ficam na mesma ul. Não to conseguindo resolver
-                });
+
+                    // Agrupa os artigos pelo título
+                    const agrupadosPorTitulo = artigos.reduce((acc, artigo) => {
+                        if (!acc[artigo.titulo]) {
+                            acc[artigo.titulo] = [];
+                        }
+                        acc[artigo.titulo].push(artigo);
+                        return acc;
+                    }, {});
+
+                    //Agrupa os subtitulos
+                    painel.innerHTML = '';  
+                    for (const [titulo, artigosDoTitulo] of Object.entries(agrupadosPorTitulo)) {
+                        let subtitulosHTML = "";
+
+                        artigosDoTitulo.forEach(artigo => {
+                            subtitulosHTML += `
+                                <li><a href="apresentaArtigo.html?id=${artigo.id}">${artigo.subTitulo}</a></li>`;
+                        });
+
+                        painel.innerHTML += `
+                            <div class="artigo">
+                                <h1 class="titulo">${titulo}</h1>
+                                <ul class="subtitulo">
+                                    ${subtitulosHTML}
+                                </ul> 
+                            </div>
+                            <br>
+                        `;
+                    }
+                })
+                .catch(error => console.error("Erro ao buscar os artigos:", error));
         }
 
-        // Chama a função ao carregar a página
-        window.onload = exibirArtigos;
+        // Função chamada quando o usuário digita algo na pesquisa
+        function filtrarArtigos() {
+            const termoPesquisa = document.getElementById("searchInput").value.toLowerCase();
+            const painel = document.getElementById("painel");
 
+            // Pega os dados do JSON
+            fetch('http://localhost:3000/artigos')
+                .then(response => response.json())
+                .then(artigos => {
+                    // Filtra os artigos com base no termo de pesquisa
+                    const artigosFiltrados = artigos.filter(artigo => 
+                        artigo.titulo.toLowerCase().includes(termoPesquisa) || 
+                        artigo.subTitulo.toLowerCase().includes(termoPesquisa)
+                    );
+
+                    // Agrupa os artigos filtrados pelo título
+                    const agrupadosPorTitulo = artigosFiltrados.reduce((acc, artigo) => {
+                        if (!acc[artigo.titulo]) {
+                            acc[artigo.titulo] = [];
+                        }
+                        acc[artigo.titulo].push(artigo);
+                        return acc;
+                    }, {});
+
+                    // Limpa o painel antes de renderizar os artigos filtrados
+                    painel.innerHTML = '';
+
+                    // Renderiza os artigos filtrados
+                    for (const [titulo, artigosDoTitulo] of Object.entries(agrupadosPorTitulo)) {
+                        let subtitulosHTML = "";
+
+                        artigosDoTitulo.forEach(artigo => {
+                            subtitulosHTML += `
+                                <li><a href="apresentaArtigo.html?id=${artigo.id}">${artigo.subTitulo}</a></li>`;
+                        });
+
+                        painel.innerHTML += `
+                            <div class="artigo">
+                                <h1 class="titulo">${titulo}</h1>
+                                <ul class="subtitulo">
+                                    ${subtitulosHTML}
+                                </ul> 
+                            </div>
+                            <br>
+                        `;
+                    }
+                })
+                .catch(error => console.error("Erro ao buscar os artigos:", error));
+        }
+
+        // Chama a função ao carregar a página para exibir todos os artigos
+        window.onload = exibirArtigos;
     </script>
 
 </body>
 
 </html>
-
 <!--  json-server --watch codigo/db/db.json  -->
 <!-- Alt + Shift + F   para identar  -->
