@@ -6,20 +6,21 @@
     margin: 5px;
 }
 header{
-   display: flex; 
-   align-items: center;
-   background-color: #6a98b1;
-   padding: 10px;
-   font-size: 30px;
-   margin-bottom: 50px;
+    display: flex; 
+    align-items: center;
+    background-color: #6a98b1;
+    padding: 10px;
+    font-size: 30px;
+    margin-bottom: 50px;
 }
 
 .container{
     max-width: 100%;
 }
 ul li{
-    display: inline;
+    display: inline-flex;
     padding: 0px 40px;
+    justify-content: space-evenly;
   
 }
 header ul li{
@@ -40,7 +41,7 @@ ul.subtitulo{
 .logo{
     margin-left: 10px;
     border-radius: 35%;
-    width: 5%;
+    width: 80px;
     margin-right: 10px;
 }
 h3{
@@ -70,4 +71,5 @@ a {
 }
 body{
     font-family: Arial, Helvetica, sans-serif;
+    margin: 1%; 
 }
