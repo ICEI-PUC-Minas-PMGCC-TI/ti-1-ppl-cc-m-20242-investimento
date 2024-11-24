@@ -1,5 +1,8 @@
+// URL do JSON Server
+const jsonUrl = 'http://localhost:3000/noticias';
+
 // Mostra a Imagem a partir do link inserido
-document.getElementById('linkImagem').addEventListener('input', function() {
+document.getElementById('linkImagem').addEventListener('input', function () {
     const imagemPreview = document.getElementById('imagemPreview');
     const url = this.value;
 
@@ -11,9 +14,8 @@ document.getElementById('linkImagem').addEventListener('input', function() {
     }
 });
 
-
-// Função para salvar dados no localStorage
-function salvarDados() {
+// Função para salvar dados no JSON Server
+async function salvarDados() {
     const titulo = document.getElementById('titulo').value;
     const subTitulo = document.getElementById('subTitulo').value;
     const contAp = document.getElementById('contAp').value;
@@ -35,64 +37,63 @@ function salvarDados() {
         contIn,
         autoria,
         data,
-        imagem 
+        imagem
     };
 
-    const db = leDados(); // Lê os dados existentes
-    db.artigos.push(dados); // Adiciona o novo artigo
-    salvaDados(db); // Salva os dados atualizados
+    try {
+        const response = await fetch(jsonUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dados)
+        });
 
-    // Limpa os campos do formulário
-    document.getElementById('titulo').value = '';
-    document.getElementById('subTitulo').value = '';
-    document.getElementById('contAp').value = '';
-    document.getElementById('contIn').value = '';
-    document.getElementById('autoria').value = '';
-    document.getElementById('data').value = '';
-    document.getElementById('linkImagem').value = '';
-    document.getElementById('imagemPreview').style.display = 'none'; // Esconde a prévia
-}
-
-
-
-// Função para ler dados do localStorage
-function leDados() {
-    let strDados = localStorage.getItem('db');
-    if (strDados) {
-        return JSON.parse(strDados);
-    } else {
-        return { artigos: [] }; // Retorna um array vazio se não houver dados
+        if (response.ok) {
+            alert('Notícia salva com sucesso no servidor!');
+            document.getElementById('formAnoticia').reset(); // Limpa os campos do formulário
+            document.getElementById('imagemPreview').style.display = 'none'; // Esconde a prévia
+        } else {
+            throw new Error('Erro ao salvar no servidor.');
+        }
+    } catch (error) {
+        console.error('Erro ao salvar:', error);
+        alert('Erro ao salvar a notícia. Verifique a conexão com o servidor.');
     }
 }
 
-function salvaDados(dados) {
-    localStorage.setItem('db', JSON.stringify(dados));
+// Função para buscar e exibir notícias do JSON Server
+async function mostrarNoticias() {
+    try {
+        const response = await fetch(jsonUrl);
+        if (!response.ok) throw new Error('Erro ao carregar as notícias.');
+
+        const noticias = await response.json();
+        let resultado = `<h2>Notícias Inseridas</h2>`;
+
+        noticias.forEach((noticia, index) => {
+            resultado += `
+                <div id="mostra">
+                    <h3>Notícia ${index + 1}</h3>
+                    <p><strong>Título:</strong> ${noticia.titulo}</p>
+                    <p><strong>Sub-título:</strong> ${noticia.subTitulo}</p>
+                    <p><strong>Conteúdo de Apresentação:</strong> ${noticia.contAp}</p>
+                    <p><strong>Conteúdo Informativo:</strong> ${noticia.contIn}</p>
+                    <p><strong>Autoria:</strong> ${noticia.autoria}</p>
+                    <p><strong>Data:</strong> ${noticia.data}</p>
+                    <img src="${noticia.imagem}" alt="Imagem Inserida" class="img-fluid border border-light" style="max-width: 300px;">
+                    <hr>
+                </div>
+            `;
+        });
+
+        // Insere os dados no elemento "resultado"
+        document.getElementById('resultado').innerHTML = resultado;
+    } catch (error) {
+        console.error('Erro ao carregar as notícias:', error);
+        document.getElementById('resultado').innerHTML = '<p>Erro ao carregar notícias. Verifique a conexão com o servidor.</p>';
+    }
 }
-
-// Função do botão mostrar, quando acionado mostra tudo o que foi inserido
-document.getElementById('btnMostrar').addEventListener('click', function() {
-    const db = leDados(); // Lê os dados
-    let resultado = `<h2>Notícias Inseridas</h2>`;
-    
-    db.artigos.forEach((artigo, index) => {
-        resultado += `
-            <div id="mostra">
-                <h3>Notícia ${index + 1}</h3>
-                <p><strong>Título:</strong> ${artigo.titulo}</p>
-                <p><strong>Sub-título:</strong> ${artigo.subTitulo}</p>
-                <p><strong>Conteúdo de Apresentação:</strong> ${artigo.contAp}</p>
-                <p><strong>Conteúdo Informativo:</strong> ${artigo.contIn}</p>
-                <p><strong>Autoria:</strong> ${artigo.autoria}</p>
-                <p><strong>Data:</strong> ${artigo.data}</p>
-                <img src="${artigo.imagem}" alt="Imagem Inserida" class="img-fluid border border-light" style="max-width: 300px;">
-                <hr>
-            </div>
-        `;
-    });
-
-    // Insere os dados no elemento "resultado"
-    document.getElementById('resultado').innerHTML = resultado;
-});
 
 // Ajusta o tamanho do campo de texto conforme é preenchido
 function ajustarAlturaTextarea(textarea) {
@@ -106,9 +107,12 @@ textareas.forEach(textarea => {
     textarea.addEventListener('input', () => ajustarAlturaTextarea(textarea));
 });
 
-// Adiciona evento para salvar dados ao clicar em "Salvar"
-document.getElementById('btnSalvar').addEventListener('click', function(event) {
+// Eventos para salvar e exibir notícias
+document.getElementById('btnSalvar').addEventListener('click', function (event) {
     event.preventDefault(); // Evita o envio do formulário
     salvarDados();
-    
+});
+
+document.getElementById('btnMostrar').addEventListener('click', function () {
+    mostrarNoticias();
 });

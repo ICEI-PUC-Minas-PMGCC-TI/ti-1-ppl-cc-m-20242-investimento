@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notícias</title>
+    <style>
+        
+        header {
+            background-color: cornflowerblue;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000; 
+        }
+
+        /* Estilo do contêiner do cabeçalho */
+        .header-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* Estilo da logo no cabeçalho */
+        .logo {
+            width: 50px;
+            height: auto;
+            margin-left: 20px;
+        }
+
+        /* Estilo do título no cabeçalho */
+        header h1 {
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            width: 100%;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .news-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 10px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .news-item {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        .news-title {
+            font-size: 1.2em;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        .news-date {
+            font-size: 0.9em;
+            color: #888;
+        }
+        .news-image {
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
+        }
+        .news-link {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <img src="/codigo/public/assets/images/logo.png" alt="Logo do site" class="logo">
+            <h1>Valor A+</h1>
+        </div>
+    </header>
+
+    <div class="news-container" id="newsContainer">
+        <!-- Notícias serão carregadas aqui -->
+    </div>
+
+    <script>
+        // URL do JSON
+        const jsonUrl = '/codigo/db/db.json';
+
+        // Seleciona o contêiner onde as notícias serão exibidas
+        const newsContainer = document.getElementById('newsContainer');
+
+        // Função para carregar notícias do JSON
+        async function loadNews() {
+            try {
+                const response = await fetch(jsonUrl);
+                if (!response.ok) throw new Error('Erro ao carregar o JSON.');
+                const data = await response.json();
+
+                // Acessa as notícias do JSON
+                const noticias = data.noticias;
+
+                // Itera pelas notícias e adiciona ao HTML
+                noticias.forEach(noticia => {
+                    const newsItem = document.createElement('div');
+                    newsItem.classList.add('news-item');
+
+                    newsItem.innerHTML = `
+                        <h2 class="news-title">${noticia.titulo}</h2>
+                        <p class="news-date">${noticia.data}</p>
+                        <img class="news-image" src="${noticia.imagem}" alt="Imagem da notícia">
+                        <a class="news-link" href="${noticia.link}" target="_blank">Leia mais</a>
+                    `;
+
+                    newsContainer.appendChild(newsItem);
+                });
+            } catch (error) {
+                console.error('Erro ao carregar notícias:', error);
+                newsContainer.innerHTML = '<p>Não foi possível carregar as notícias.</p>';
+            }
+        }
+
+        // Chama a função para carregar as notícias
+        loadNews();
+    </script>
+</body>
+</html>
