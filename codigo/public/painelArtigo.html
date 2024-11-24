@@ -31,7 +31,8 @@
     <div class="container mt-3">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <input type="text" id="searchInput" class="form-control rounded-pill" placeholder="Pesquisar Artigos..." oninput="filtrarArtigos()">
+                <input type="text" id="searchInput" class="form-control rounded-pill" placeholder="Pesquisar Artigos..."
+                    oninput="filtrarArtigos()">
             </div>
         </div>
     </div>
@@ -78,7 +79,7 @@
                     }, {});
 
                     //Agrupa os subtitulos
-                    painel.innerHTML = '';  
+                    painel.innerHTML = '';
                     for (const [titulo, artigosDoTitulo] of Object.entries(agrupadosPorTitulo)) {
                         let subtitulosHTML = "";
 
@@ -111,8 +112,8 @@
                 .then(response => response.json())
                 .then(artigos => {
                     // Filtra os artigos com base no termo de pesquisa
-                    const artigosFiltrados = artigos.filter(artigo => 
-                        artigo.titulo.toLowerCase().includes(termoPesquisa) || 
+                    const artigosFiltrados = artigos.filter(artigo =>
+                        artigo.titulo.toLowerCase().includes(termoPesquisa) ||
                         artigo.subTitulo.toLowerCase().includes(termoPesquisa)
                     );
 
