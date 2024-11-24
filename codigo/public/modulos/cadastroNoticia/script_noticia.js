@@ -72,12 +72,12 @@ function salvaDados(dados) {
 // Função do botão mostrar, quando acionado mostra tudo o que foi inserido
 document.getElementById('btnMostrar').addEventListener('click', function() {
     const db = leDados(); // Lê os dados
-    let resultado = `<h2>Artigos Inseridos</h2>`;
+    let resultado = `<h2>Notícias Inseridas</h2>`;
     
     db.artigos.forEach((artigo, index) => {
         resultado += `
             <div id="mostra">
-                <h3>Artigo ${index + 1}</h3>
+                <h3>Notícia ${index + 1}</h3>
                 <p><strong>Título:</strong> ${artigo.titulo}</p>
                 <p><strong>Sub-título:</strong> ${artigo.subTitulo}</p>
                 <p><strong>Conteúdo de Apresentação:</strong> ${artigo.contAp}</p>

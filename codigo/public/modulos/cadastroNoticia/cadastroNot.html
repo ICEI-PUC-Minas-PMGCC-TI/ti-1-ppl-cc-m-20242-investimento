@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Artigos</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="cadastro.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>Cadastro de notícias</title>
+    <link rel="stylesheet" href="cadastroNot.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
-
 <body>
-    <div class="artigo border border-light">
-        <h1>Cadastro de Artigos</h1>
-        <form id="formArtigo">
+    <header>
+        <div class="header-container">
+            <img src="/codigo/public/assets/images/logo.png" alt="Logo do site" class="logo">
+            <h1>Valor A+</h1>
+        </div>
+    </header>
+    <div class="noticia border border-light">
+        <h1>Cadastro de Notícias</h1>
+        <form id="formAnoticia">
             <!-- Título -->
             <div class="form-group">
                 <label for="titulo">Título:</label>
@@ -30,12 +31,12 @@
             </div>
             <!-- Conteúdo de Apresentação -->
             <div class="form-group">
-                <label for="contAp">Conteúdo de Apresentação:</label>
+                <label for="contAp">Conteúdo da Notícia:</label>
                 <textarea class="form-control" id="contAp" placeholder="Digite aqui" rows="3" required></textarea>
             </div>
             <!-- Conteúdo Informativo -->
             <div class="form-group">
-                <label for="contIn">Conteúdo Informativo:</label>
+                <label for="contIn">Fonte:</label>
                 <textarea class="form-control" id="contIn" placeholder="Digite aqui" rows="3" required></textarea>
             </div>
             <!-- Autoria -->
@@ -63,9 +64,6 @@
         </form>
         <div id="resultado" class="mt-4"></div>
     </div>
-    <script src="cadastro.js"></script>
-
- 
+    <script src="/codigo/public/modulos/cadastroNoticia/script_noticia.js"></script>
 </body>
-
 </html>

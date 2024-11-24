@@ -1,0 +1,87 @@
+<!--Feito por Felipe Gabriel de Carvalho-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artigo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/painelArtigo.css"> <!--Mudar a referencia do css-->
+</head>
+
+<body>
+    <!--Cabeçalho-->
+    <header>
+        <img src="assets/images/logo.png" alt="Logo do site" class="logo">
+        <ul>
+            <li><a href="">PAGINA INICIA</a>L</li>
+            <li><a href="">GUIA DE OPÇÕES</a></li>
+            <li><a href="painelArtigo.html">PESQUISA</a></li>
+        </ul>
+    </header>
+
+    <div id="tela">
+        <!--O artigo será apresentado nesta div-->
+    </div>
+   
+
+    
+    <script>
+
+        let artigos = [];
+
+        // Requisição para obter os artigos
+        fetch('http://localhost:3000/artigos')
+            .then(response => response.json())
+            .then(data => {
+                // Preenche a variável 'artigos' com os dados da json
+                artigos = data;
+                console.log(artigos); // Mostra os artigos carregados no console
+
+                // busca o 'id' da URL
+                let params = new URLSearchParams(location.search);
+                let id = params.get('id');
+
+                // Encontrar o artigo pelo 'id'
+                let artigo = artigos.find(function (elem) {
+                    return elem.id == id;
+                });
+
+                //apresenta a seguinte estrutura na div#tela 
+                let tela = document.getElementById('tela');
+                if (artigo) {
+                    tela.innerHTML = `
+                    <div class="row">
+                        <div class="col-md-12">
+                        <div id="janela">
+                         <h3>${artigo.titulo}</h3>
+                         <h4>${artigo.subTitulo}</h4>
+                                       
+                        <p> ${artigo.contAp}</p>
+                        <p>${artigo.contIn}</p>
+                        <img src="${artigo.imagem}" alt="Imagem Inserida" class="img-fluid border border-light" style="max-width: 300px;">
+                        <p>Feito por ${artigo.autoria}</p>
+                        <p> Data de inserção do artigo:  ${artigo.data}</p>
+                        </div>
+                        </div>
+                        <div class="col-md-0">     
+                        </div>
+                        </div>
+
+                    `;
+                } else {
+                    tela.innerHTML = `<p>Erro ao carregar dados</p>`;
+                }
+            })
+            .catch(error => console.error('Erro ao carregar artigos:', error));
+
+    </script>
+</body>
+
+</html>

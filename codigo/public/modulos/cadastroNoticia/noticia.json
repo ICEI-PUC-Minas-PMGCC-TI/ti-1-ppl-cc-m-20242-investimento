@@ -1,0 +1,31 @@
+{
+  "noticias": [
+    {
+      "titulo": "Novos investimentos para o futuro",
+      "subTitulo": "Subtítulo do Artigo",
+      "contAp": "Conteúdo de Apresentação do Artigo",
+      "contIn": "Conteúdo Informativo do Artigo",
+      "autoria": "Nome do Autor",
+      "data": "01/08/2020",
+      "imagem": "https://imagens.com"  
+    },
+    {
+      "titulo": "Investimento em Ações: Potencial e Estratégias",
+      "subTitulo": "O Que São Ações e Como Funcionam?",
+      "contAp": "Conteudo de teste.",
+      "contIn": "Conteudo da noticia.",
+      "autoria": "autor",
+      "data": "10/08/2025",
+      "imagem": "https://imagens.com"  
+    },
+    {
+      "titulo": "Investimento em Ações: Potencial e Estratégias",
+      "subTitulo": "Estratégias para Investir em Ações",
+      "contAp": "teste",
+      "contIn": "Conteudo da noticia.",
+      "autoria": "autor",
+      "data": " 09/07/2019",
+      "imagem": "https://imagens.com"  
+    }
+  ]
+}

@@ -1,30 +1,37 @@
 cff-version: 1.0.1
 message: Please cite this software using these metadata.
-title: 
+title: Opções de Investimento
 authors:
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
+  - family-names: Souza
+    given-names: Tallys Assis
+  - family-names: Tavares Santos
+    given-names: Filipe Estopa
+  - family-names: Carvalho
+    given-names: Felipe Gabriel
+  - family-names: Guimarães
+    given-names: Victor Seretni
   - family-names: 
     given-names: 
   - family-names: 
     given-names:
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Carneiro
+    given-names: Rommel Vieira
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Oliveira Caetano
+    given-names: João Carlos
+    name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Freitas Diniz
+    given-names: Luciana Mara
 keywords:
-  - 
-  - 
+  - Investimentos
+  - Portifolio  
+  - Carteira
+  - Mercado
+  - Financeiro
 repository-code: 
 license: CC-BY-4.0
 version: 1.0.0
