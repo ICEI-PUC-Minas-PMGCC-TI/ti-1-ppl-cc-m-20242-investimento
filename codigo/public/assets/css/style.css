@@ -54,3 +54,11 @@ h4 {
 main {
     padding: 20px;
 }
+
+
+.logo{
+    margin-left: 10px;
+    border-radius: 35%;
+    width: 80px;
+    margin-right: 10px;
+}
