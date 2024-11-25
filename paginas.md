@@ -1,0 +1,11 @@
+- Login
+    - Cadastro
+    - Acoes (user_id)
+        - Entradas / Noticias (user_id)
+        - Cadastro Notícias (user_id)
+        - painelArtigos (user_id)
+            - Cadastro artigo (user_id)
+            - apresentaArtigo (user_id, artigo_id)
+        - perfilInvestidor (user_id)
+        - portalDuvidas (user_id)
+            - portalDuvidasForum (user_id, topico_id) 
