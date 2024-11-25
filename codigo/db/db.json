@@ -160,42 +160,6 @@
       "data": 1730128653551
     }
   ],
-
-  "historico": [
-    {
-      "id": 1,
-      "user_id": "12345",
-      "valor": 589.2,
-      "data": "27/10/2024"
-    },
-    {
-      "id": 2,
-      "user_id": "12345",
-      "valor": 576.1,
-      "data": "28/10/2024"
-    },
-    {
-      "id": 3,
-      "user_id": "12345",
-      "valor": 650.3,
-      "data": "29/10/2024"
-    },
-    {
-      "id": 4,
-      "user_id": "12345",
-      "valor": 687.2,
-      "data": "30/10/2024"
-    }
-  ],
-
-  "sumario": [
-    {
-      "id": 1,
-      "user_id": "12345",
-      "saldo": 687.2,
-      "ganho_semana": 98
-    }
-  ],
   "artigos": [
     {
       "id": "0",
@@ -264,6 +228,12 @@
       "user_id": 1,
       "valor_carteira": 200,
       "data": "01/01/2024"
+    },
+    {
+      "id": "2",
+      "user_id": 1,
+      "valor_carteira": 200,
+      "data": "02/01/2024"
     }
   ],
   "sumario": [
