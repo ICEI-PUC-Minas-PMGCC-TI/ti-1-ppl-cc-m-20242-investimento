@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat com Especialista</title>
+    <link rel="stylesheet" href="assets/css/portalDuvidasChat.css">
+</head>
+<body>
+    <header class="chat-header">
+        <div class="header-left">
+            <a href="portalDuvidas.html" class="back-arrow">
+                <img src="assets/images/backarrow.png" alt="Voltar" class="arrow-icon">
+            </a>
+            <img src="assets/images/profile.png" alt="Perfil" class="profile-logo">
+            <span class="profile-name" id="profileName"></span>
+        </div>
+    </header>
+
+    <main class="chat-container">
+        <div class="messages" id="messages">
+            <div class="message-sent">
+            </div>
+        </div>
+        
+        <div class="message-input-container">
+            <input type="text" id="messageInput" class="message-input" placeholder="Digite sua mensagem...">
+            <button id="sendButton" class="send-button">Enviar</button>
+        </div>
+    </main>
+    <script src="assets/js/portalDuvidasChat.js"></script>
+</body>
+</html>

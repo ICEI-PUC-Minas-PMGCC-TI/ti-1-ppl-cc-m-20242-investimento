@@ -1,5 +1,5 @@
-/* Estilo do corpo */
 body {
+    font-family: Arial, sans-serif;
     background-color: white;
     height: 100vh;
     display: flex;
@@ -7,16 +7,14 @@ body {
     align-items: center;
 }
 
-/* Estilo do formulário */
 form {
     color: white;
-    background-color: cornflowerblue;
+    background-color: #6495ed;
     width: 600px;
     padding: 20px;
     border-radius: 20px;
 }
 
-/* Estilo das entradas */
 .input {
     padding: 10px;
     margin: auto auto;
@@ -25,9 +23,8 @@ form {
     width: 50%;
 }
 
-/* Ocultar inicialmente os campos específicos de analista e investidor */
 #campos-analista, #campos-investidor {
-    display: none; /* Os campos só aparecerão após a escolha do tipo */
+    display: none; 
 }
 
 .container{
@@ -42,34 +39,31 @@ form {
 }
 
 
-/* Estilo do cabeçalho */
 header {
     background-color: cornflowerblue;
     padding: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: fixed; /* Mantém o cabeçalho fixo no topo */
+    position: fixed; 
     top: 0;
     width: 100%;
-    z-index: 1000; /* Garante que o cabeçalho fique acima do conteúdo */
+    z-index: 1000; 
 }
 
-/* Estilo do contêiner do cabeçalho */
 .header-container {
     display: flex;
     align-items: center;
     width: 100%;
 }
 
-/* Estilo da logo no cabeçalho */
+
 .logo {
     width: 50px;
     height: auto;
     margin-right: 20px;
 }
 
-/* Estilo do título no cabeçalho */
 header h1 {
     color: white;
     font-size: 24px;
@@ -77,10 +71,65 @@ header h1 {
     width: 100%;
 }
 
+.main-content {
+    padding: 20px;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title-container {
+    width: 100%;
+    text-align: left;
+}
+
+.title {
+    font-size: 28px;
+    color: cornflowerblue;
+    margin-bottom: 10px;
+    
+}
+
+.subtitle {
+    font-size: 18px;
+    color: gray;
+    width: 100%;
+    text-align: left;
+}
+
+.divider {
+    width: 100%;
+    margin: 10px auto;
+    border: none;
+    border-top: 1px solid #ccc;
+}
+
+.profile-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px auto;
+    width: 80%;
+}
+
+.profile-button {
+    text-decoration: none;
+}
+
+.profile-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.profile-icon:hover {
+    transform: scale(1.1);
+}
+
 button {
     background-color: white;
-    color: cornflowerblue;
-    border: 2px solid cornflowerblue;
+
     padding: 10px 20px;
     border-radius: 10px;
     font-size: 16px;
@@ -89,6 +138,6 @@ button {
 }
 
 button:hover {
-    background-color: rgb(98, 133, 199);
+   /* background-color: rgb(98, 133, 199); */
     color: white;
 }
