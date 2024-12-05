@@ -12,7 +12,7 @@
 
 // Página inicial de Login
 const LOGIN_URL = "/modulos/login/login.html";
-let RETURN_URL = "/modulos/login/index.html";
+let RETURN_URL = "/modulos/acoes/acoes.html";
 const API_URL = '/usuarios';
 
 // Objeto para o banco de dados de usuários baseado em JSON
@@ -44,8 +44,8 @@ function initLoginApp () {
     }
     else {
         // VERIFICA SE A URL DE RETORNO ESTÁ DEFINIDA NO SESSION STORAGE, CASO CONTRARIO USA A PÁGINA INICIAL
-        let returnURL = sessionStorage.getItem('returnURL');
-        RETURN_URL = returnURL || RETURN_URL
+        //let returnURL = sessionStorage.getItem('returnURL');
+        //RETURN_URL = returnURL || RETURN_URL
         
         // INICIALIZA BANCO DE DADOS DE USUÁRIOS
         carregarUsuarios(() => {

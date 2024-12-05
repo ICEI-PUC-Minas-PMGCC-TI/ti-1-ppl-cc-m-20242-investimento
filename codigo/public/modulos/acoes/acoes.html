@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+    <style>
+        #summary {
+            background-color: rgb(80, 80, 80);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        #history {
+            background-color: rgb(80, 80, 80);
+            padding: 10px;
+            border-radius: 10px;
+            min-height: 30rem;
+        }
+
+        #chartbox {
+            max-width: 100%;
+        }
+        .whitebox {
+            background-color: antiquewhite;
+            border-radius: 10px;
+            padding: 5px;
+        }
+
+        .header {
+            font-size: large;
+            font-weight: bold;
+        }
+
+        .frame {
+            padding: 5px;
+        }
+    </style>
+    <!--Cabeçalho-->
+    <header>
+        <img src="../../assets/images/logo.png" alt="Logo do site" class="logo">
+        <ul>
+            <li><a id="linkInicio" href="acoes.html">PAGINA INICIA</a></li>
+            <li><a id="linkGuia" href="#">GUIA DE OPÇÕES</a></li>
+            <li><a id="linkPesquisa" href="painelArtigo.html">PESQUISA</a></li>
+            <li><a id="linkEntradas" href="entradas.html">ENTRADAS</a></li>
+            <li><a id="linkAjuda" href="portalDuvidas.html">AJUDA</a></li>
+            <li><a id="linkSobre" href="about.html">SOBRE</a></li>
+        </ul>
+    </header>
+    <div class="container-fluid">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div id="summary">
+                    <div class="whitebox">
+                        <p class="header">Sua carteira</p>
+                        <p id="saldo"></p>
+                        <p id="ganho_semana"></p>
+                        <p id="qtd_ativos"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div id="history">
+                    <div id="chartbox"></div>
+                </div>                
+            </div>
+        </div>
+    </div>
+    <div id="bottom_info">
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="../../assets/js/app.js"></script>
+    <script>
+        async function carregarCarteira() {
+            let user_id = JSON.parse(sessionStorage.getItem('usuarioCorrente')).id
+            console.log("Entrou");
+            const response = await fetch(`/sumario?user_id=${user_id}`);
+            const data = await response.json();
+            const carteira = data[0];
+            console.log(carteira);
+
+            document.getElementById("saldo").innerText="Seu saldo: " + carteira.valor_carteira;
+            document.getElementById("ganho_semana").innerText="Ganho da semana: " + carteira.ultimo_ganho;
+            document.getElementById("qtd_ativos").innerText="Ativos: " + 4;
+        }
+        carregarCarteira();
+    </script>
+    <script>
+        let user_id = JSON.parse(sessionStorage.getItem('usuarioCorrente')).id
+        // Fetch data from the JSON server (replace with the correct URL for your server)
+        fetch(`/historico?user_id=${user_id}`)
+          .then(response => response.json())
+          .then(data => {
+            // Extract the data for Plotly
+            const dates = data.map(item => item.data);  // Extracting the 'data' field (dates)
+            const valores = data.map(item => item.valor_carteira);  // Extracting the 'valor' field
+    
+            // Prepare the data for Plotly
+            const trace = {
+              x: dates,  // x-axis is the dates
+              y: valores,  // y-axis is the values
+              type: 'scatter',  // Line chart
+              mode: 'lines+markers',  // Display both lines and markers
+              name: 'Valor Histórico'  // Name for the line
+            };
+    
+            // Layout options
+            const layout = {
+                title: 'Valor Histórico',
+                xaxis: {
+                    title: 'Data',
+                    type: 'category'  // Make sure dates are treated as categories
+                },
+                yaxis: {
+                    title: 'Valor'
+                },
+                autosize: true,  // Ensures the plot automatically adjusts to the container size
+                responsive: true,  // Makes the chart responsive to window size changes
+            };
+    
+            // Render the plot
+            Plotly.newPlot('chartbox', [trace], layout);
+          })
+          .catch(error => console.error('Error fetching data:', error));
+      </script>
+      <script src="../../assets/js/populateNavbar.js"></script>
+</body>
+</html>
