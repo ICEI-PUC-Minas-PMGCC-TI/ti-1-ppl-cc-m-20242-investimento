@@ -3,10 +3,10 @@ const queryParams = window.location.search;
 
 // List of link IDs to update
 const links = [
-    { id: 'linkInicio', base: 'acoes.html' },
+    { id: 'linkInicio', base: '/modulos/acoes/acoes.html' },
     { id: 'linkGuia', base: '#' },
-    { id: 'linkPesquisa', base: 'painelArtigo.html' },
-    { id: 'linkEntradas', base: 'entradas.html' },
+    { id: 'linkPesquisa', base: '/modulos/artigo/painelArtigo.html' },
+    { id: 'linkEntradas', base: '/modulos/entradas/entradas.html' },
     { id: 'linkAjuda', base: 'portalDuvidas.html' },
     { id: 'linkSobre', base: 'about.html' },
     { id: 'linkNovoArtigo', base: 'cadastroArtigo.html'}

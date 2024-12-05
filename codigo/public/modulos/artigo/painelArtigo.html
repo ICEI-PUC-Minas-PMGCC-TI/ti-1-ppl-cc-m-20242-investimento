@@ -12,13 +12,13 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/painelArtigo.css">
+    <link rel="stylesheet" href="../../assets/css/painelArtigo.css">
 </head>
 
 <body>
     <!-- Cabeçalho -->
     <header>
-        <img src="assets/images/logo.png" alt="Logo do site" class="logo">
+        <img src="../../assets/images/logo.png" alt="Logo do site" class="logo">
         <ul>
             <li><a id="linkInicio" href="acoes.html">PAGINA INICIA</a></li>
             <li><a id="linkGuia" href="#">GUIA DE OPÇÕES</a></li>
@@ -57,15 +57,10 @@
             const painel = document.getElementById("painel");
             const info = document.getElementById("info");
 
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
-            if (!urlParams.has('user_id')) {
-                throw new Error('No user provided');
-            }
-            const user_id = urlParams.get('user_id');
+            let user_id = JSON.parse(sessionStorage.getItem('usuarioCorrente')).id
 
             // Pega os dados do JSON
-            fetch('http://localhost:3000/artigos')
+            fetch('/artigos')
                 .then(response => response.json())
                 .then(artigos => {
                     // Este bloco sorteia um artigo para ser usado no "Leia também"
@@ -76,7 +71,7 @@
                     info.innerHTML = `
                         <h2>Leia Também</h2>
                         <h5>
-                            <a href="apresentaArtigo.html?id=${informacaoSorteada.id}&user_id=${user_id}"> // ?id=dushdus&user_id=1
+                            <a href="apresentaArtigo.html?id=${informacaoSorteada.id}">
                                 ${informacaoSorteada.subTitulo}
                             </a>
                         </h5>
@@ -122,7 +117,7 @@
             const painel = document.getElementById("painel");
 
             // Pega os dados do JSON
-            fetch('http://localhost:3000/artigos')
+            fetch('/artigos')
                 .then(response => response.json())
                 .then(artigos => {
                     // Filtra os artigos com base no termo de pesquisa
@@ -169,7 +164,7 @@
         // Chama a função ao carregar a página para exibir todos os artigos
         window.onload = exibirArtigos;
     </script>
-    <script src="./assets/js/populateNavbar.js"></script>
+    <script src="../../assets/js/populateNavbar.js"></script>
 </body>
 
 </html>

@@ -1,4 +1,13 @@
 {
+  "usuarios": [
+    {
+      "id": 1,
+      "login": "admin",
+      "senha": "admin",
+      "nome": "admin",
+      "email": "admin@gmail.com"
+    }
+  ],
   "usuario": [
     {
       "id": "1",
@@ -158,6 +167,24 @@
       "usuario_id": "12345",
       "recorrente": true,
       "data": 1730128653551
+    },
+    {
+      "id": "c4ea",
+      "nome": "Tigrinho",
+      "valor": 40,
+      "tipo": "gasto",
+      "usuario_id": "12345",
+      "recorrente": true,
+      "data": 1733405364914
+    },
+    {
+      "id": "c323",
+      "nome": "Tigrinho",
+      "valor": 40,
+      "tipo": "gasto",
+      "usuario_id": 1,
+      "recorrente": true,
+      "data": 1733405425372
     }
   ],
   "artigos": [
@@ -224,16 +251,22 @@
   ],
   "historico": [
     {
-      "id": "1",
+      "id": 1,
       "user_id": 1,
       "valor_carteira": 200,
       "data": "01/01/2024"
     },
     {
-      "id": "2",
+      "id": 2,
       "user_id": 1,
       "valor_carteira": 200,
       "data": "02/01/2024"
+    },
+    {
+      "id": 3,
+      "user_id": 1,
+      "valor_carteira": 300,
+      "data": "03/01/2024"
     }
   ],
   "sumario": [
@@ -243,7 +276,7 @@
       "ultima_atualização": "01/01/2024",
       "rentabilidade": 0.5,
       "ultimo_ganho": 0.3,
-      "id": "ae3c"
+      "id": 1
     }
   ],
   "comportamento": [

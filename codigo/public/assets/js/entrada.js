@@ -2,7 +2,8 @@ const apiUrl = "http://localhost:3000";
         
         // Função para carregar os gastos do servidor
         async function carregarGastos() {
-            const response = await fetch(`${apiUrl}/entrada?tipo=gasto`);
+            let user_id = JSON.parse(sessionStorage.getItem('usuarioCorrente')).id
+            const response = await fetch(`/entrada?tipo=gasto&usuario_id=${user_id}`);
             const gastos = await response.json();
             const gastosBody = document.getElementById("gastos-body");
             let totalGastos = 0;
@@ -19,7 +20,8 @@ const apiUrl = "http://localhost:3000";
         
         // Função para carregar a renda passiva do servidor
         async function carregarRenda() {
-            const response = await fetch(`${apiUrl}/entrada?tipo=investimento`);
+            let user_id = JSON.parse(sessionStorage.getItem('usuarioCorrente')).id
+            const response = await fetch(`/entrada?tipo=investimento&usuario_id=${user_id}`);
             const rendas = await response.json();
             const rendaBody = document.getElementById("renda-body");
             let totalRenda = 0;
@@ -36,7 +38,7 @@ const apiUrl = "http://localhost:3000";
         
         // Função para carregar as notícias do servidor
         async function carregarNoticias() {
-            const response = await fetch(`${apiUrl}/noticias`);
+            const response = await fetch(`/noticias`);
             const noticias = await response.json();
             const noticiasContainer = document.getElementById("noticias-container");
         
@@ -59,6 +61,7 @@ const apiUrl = "http://localhost:3000";
         
         // Função para adicionar um gasto
         async function adicionarGasto() {
+            let user_id = JSON.parse(sessionStorage.getItem('usuarioCorrente')).id
             const nome = prompt("Digite o nome do gasto:");
             const valor = parseFloat(prompt("Digite o valor do gasto:"));
             if (!nome || isNaN(valor)) return alert("Entrada inválida!");
@@ -70,7 +73,7 @@ const apiUrl = "http://localhost:3000";
                     nome,
                     valor,
                     tipo: "gasto",
-                    usuario_id: "12345", // Substitua pelo ID real do usuário
+                    usuario_id: user_id, // Substitua pelo ID real do usuário
                     recorrente: true,
                     data: Date.now()
                 })
@@ -80,12 +83,13 @@ const apiUrl = "http://localhost:3000";
         
         // Função para adicionar uma renda
         async function adicionarRenda() {
+            let user_id = JSON.parse(sessionStorage.getItem('usuarioCorrente')).id
             const nome = prompt("Digite o nome do investimento:");
             const valor = parseFloat(prompt("Digite o valor investido:"));
             const valor_renda = parseFloat(prompt("Digite a renda média"));
             if (!nome || isNaN(valor)) return alert("Entrada inválida!");
         
-            await fetch(`${apiUrl}/entrada`, {
+            await fetch(`/entrada`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -93,7 +97,7 @@ const apiUrl = "http://localhost:3000";
                     valor,
                     valor_renda,
                     tipo: "investimento",
-                    usuario_id: "12345", // Substitua pelo ID real do usuário
+                    usuario_id: user_id, // Substitua pelo ID real do usuário
                     recorrente: true,
                     data: Date.now()
                 })
