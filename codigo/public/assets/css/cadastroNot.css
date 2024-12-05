@@ -1,38 +1,35 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+/* Configuração Global */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+    margin: 1%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
+/* Estilo de Cabeçalho */
 header {
-    background-color: cornflowerblue;
-    padding: 15px;
+    background-color: #6a98b1;
+    padding: 10px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000; 
+    z-index: 1000;
+    margin-bottom: 50px;
 }
-
-/* Estilo do contêiner do cabeçalho */
 .header-container {
     display: flex;
     align-items: center;
     width: 100%;
 }
-
-/* Estilo da logo no cabeçalho */
-.logo {
-    width: 50px;
-    height: auto;
-    margin-left: 20px;
-}
-
-/* Estilo do título no cabeçalho */
 header h1 {
     color: white;
     font-size: 24px;
@@ -40,11 +37,163 @@ header h1 {
     width: 100%;
 }
 
-body {
-    background-color: white;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Logo */
+.logo {
+    margin-left: 10px;
+    margin-right: 20px;
+    border-radius: 35%;
+    width: 50px;
+    height: auto;
 }
 
+/* Estilização dos Links */
+a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Menu */
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.menu li {
+    display: inline;
+    padding: 0.5em 1em;
+    height: 2em;
+    line-height: 2em;
+}
+.menu li a {
+    text-decoration: none;
+    color: #ff7645;
+    font-weight: bold;
+}
+.menu li:hover {
+    background-color: darkblue;
+    color: white;
+}
+
+/* Barra de Informações */
+.barra-info {
+    height: 2em;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Estilização Geral de Títulos */
+h1 {
+    font-size: 30px;
+}
+h3 {
+    color: #093070;
+    border-bottom: 1px solid #c1c1c1;
+    font-size: 30px;
+    background-color: #b2c3cc;
+    padding: 5px;
+    border-radius: 10px;
+}
+h4 {
+    color: #ff7645;
+    font-size: 20px;
+}
+
+/* Estilização do Formulário */
+form {
+    color: white;
+    background-color: cornflowerblue;
+    width: 600px;
+    padding: 20px;
+    border-radius: 20px;
+}
+.input {
+    padding: 10px;
+    margin: auto auto;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+/* Campos Específicos */
+#campos-analista,
+#campos-investidor {
+    display: none;
+}
+
+/* Botões */
+button {
+    background-color: white;
+    color: cornflowerblue;
+    border: 2px solid cornflowerblue;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+button:hover {
+    background-color: rgb(98, 133, 199);
+    color: white;
+}
+
+/* Estilização da Janela */
+#janela {
+    justify-items: center;
+    background-color: #c9d0d4;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+}
+
+/* Estilização do Artigo */
+.artigo {
+    background-color: #6a98b1;
+    padding: 4%;
+    border-radius: 15px;
+    width: 100%;
+}
+
+/* Prévia de Imagem */
+#imagemPreview {
+    display: none;
+    margin-top: 20px;
+    max-width: 300px;
+    margin-bottom: 20px;
+}
+
+/* Layout Adicional */
+.p2 {
+    background-color: bisque;
+}
+.row {
+    margin: 5px;
+}
+.container {
+    max-width: 100%;
+}
+ul li {
+    display: inline-flex;
+    padding: 0px 40px;
+    justify-content: space-evenly;
+}
+header ul li {
+    padding: 0px 30px;
+}
+ul.subtitulo {
+    background-color: rgb(199, 217, 223);
+    border-radius: 10px;
+    padding: 5px 0px;
+}
+ul.subtitulo li {
+    font-size: 20px;
+    padding-right: 10px;
+}
+
+/* Estilização de Imagens */
+.banner img {
+    width: 100%;
+}
+.iimag {
+    justify-content: center;
+}
