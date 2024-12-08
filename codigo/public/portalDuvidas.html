@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valor A+ - Fórum de Discussões</title>
+    <link rel="stylesheet" href="./assets/css/forum-styles.css">
+</head>
+<body>
+    <div class="forum-container">
+        <header>
+            <div class="logo-container">
+                <img src="assets/images/logo.png" alt="Valor A+" class="logo">
+                <h1>Valor A+ Fórum</h1>
+            </div>
+
+        </header>
+
+        <main>
+            <div class="forum-header">
+                <h2>Discussões Financeiras</h2>
+                <div class="search-create-container">
+                    <input type="text" id="searchInput" placeholder="Buscar tópicos...">
+                    <button id="createThreadBtn">Criar Novo Tópico</button>
+                </div>
+            </div>
+
+            <div class="threads-container" id="threadsContainer">
+                 
+            </div>
+        </main>
+
+        <div id="createThreadModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h3>Criar Novo Tópico</h3>
+                <form id="newThreadForm">
+                    <input type="text" id="threadTitle" placeholder="Título do Tópico" required>
+                    <textarea id="threadContent" placeholder="Conteúdo do Tópico" required></textarea>
+                    <select id="threadCategory">
+                        <option value="">Selecione uma Categoria</option>
+                        <option value="investimentos">Investimentos</option>
+                        <option value="financas-pessoais">Finanças Pessoais</option>
+                        <option value="mercado-financeiro">Mercado Financeiro</option>
+                    </select>
+                    <button type="submit">Publicar Tópico</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/js/forum-script.js"></script>
+   
+</body>
+</html>

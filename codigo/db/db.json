@@ -304,5 +304,25 @@
       "classificacao": "Arriscado",
       "id": "0ba4"
     }
+  ],
+  "forum": [
+    {
+    "id_thread": "1",
+    "titulo": "Dúvidas sobre declaração de imposto de renda",
+    "autor": "Maria Souza",
+    "categoria":"financas-pessoais",
+    "conteudo": "",
+    "respostas":"3",
+    "visualizacoes":"87"
+    },
+    {
+      "id_thread": "2",
+      "titulo": "Melhores estratégias de investimento em 2024",
+      "autor": "João Silva",
+      "categoria":"financas-pessoais",
+      "conteudo": "",
+      "respostas":"3",
+      "visualizacoes":"87"
+    }
   ]
 }
