@@ -1,7 +1,7 @@
 {
   "usuarios": [
     {
-      "id": "1",
+      "id": 1,
       "login": "admin",
       "senha": "admin",
       "nome": "admin",
@@ -116,7 +116,7 @@
       "nome": "Parcela do agiota",
       "valor": 300,
       "tipo": "gasto",
-      "usuario_id": "12345",
+      "usuario_id": 1,
       "recorrente": true,
       "data": 1730112173084
     },
@@ -126,7 +126,7 @@
       "valor": 3000,
       "valor_renda": 150,
       "tipo": "investimento",
-      "usuario_id": "12345",
+      "usuario_id": 1,
       "recorrente": true,
       "data": 1730112187214
     },
@@ -136,7 +136,7 @@
       "valor": 40000,
       "valor_renda": 3000,
       "tipo": "investimento",
-      "usuario_id": "12345",
+      "usuario_id": 1,
       "recorrente": true,
       "data": 1730112245652
     },
@@ -145,7 +145,7 @@
       "nome": "Tigrinho",
       "valor": 200,
       "tipo": "gasto",
-      "usuario_id": "12345",
+      "usuario_id": 1,
       "recorrente": true,
       "data": 1730117059749
     },
@@ -155,7 +155,7 @@
       "valor": 2000,
       "valor_renda": 2100,
       "tipo": "investimento",
-      "usuario_id": "12345",
+      "usuario_id": 1,
       "recorrente": true,
       "data": 1730125472264
     },
@@ -164,7 +164,7 @@
       "nome": "Carnê",
       "valor": 100,
       "tipo": "gasto",
-      "usuario_id": "12345",
+      "usuario_id": 1,
       "recorrente": true,
       "data": 1730128653551
     },
@@ -173,7 +173,7 @@
       "nome": "Tigrinho",
       "valor": 40,
       "tipo": "gasto",
-      "usuario_id": "12345",
+      "usuario_id": 1,
       "recorrente": true,
       "data": 1733405364914
     },
@@ -191,7 +191,7 @@
       "nome": "20",
       "valor": 30,
       "tipo": "gasto",
-      "usuario_id": "1",
+      "usuario_id": 1,
       "recorrente": true,
       "data": 1733702402907
     },
@@ -201,7 +201,7 @@
       "valor": 1000,
       "valor_renda": 5,
       "tipo": "investimento",
-      "usuario_id": "1",
+      "usuario_id": 1,
       "recorrente": true,
       "data": 1733702418660
     }
@@ -300,7 +300,7 @@
   ],
   "comportamento": [
     {
-      "id_usuario": "1",
+      "id_usuario": 1,
       "nome_usuario": "Victor Guimaraes",
       "pergunta": "1",
       "resposta": "a",
@@ -308,7 +308,7 @@
       "id": "4ccf"
     },
     {
-      "id_usuario": "2",
+      "id_usuario": 2,
       "nome_usuario": "Fulano",
       "pergunta": "2",
       "resposta": "b",
@@ -316,7 +316,7 @@
       "id": "91b2"
     },
     {
-      "id_usuario": "3",
+      "id_usuario": 3,
       "nome_usuario": "Ciclano",
       "pergunta": "3",
       "resposta": "a",
