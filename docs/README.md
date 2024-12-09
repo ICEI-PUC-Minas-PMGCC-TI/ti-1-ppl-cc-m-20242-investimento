@@ -126,7 +126,9 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 ### Requisitos Funcionais
 
 * O sistema deve permitir o usuário registrar uma conta, com e-mail e senha - alta
-* O sistema deve permitir o usuário o acesso direto de compra e venda de estoques, ações, títulos, entre outros de empresas e instituições financeiras - alta
+* O sistema deve permitir o usuário o acesso direto de compra e venda de investimentos - alta
+* O sistema deve exibir artigos informativos sobre investimentos - média
+* O sistema deve exibir o desempenho da carteira do usuário - alta
 
 ### Requisitos não Funcionais
 
@@ -210,104 +212,141 @@ O vídeo a seguir traz uma apresentação do problema que a equipe está tratand
 
 Esta seção apresenta as funcionalidades da solução.Info
 
-##### Funcionalidade 1 - Cadastro de Contatos ⚠️ EXEMPLO ⚠️
+##### Funcionalidade 1 - Visualização da carteira
 
-Permite a inclusão, leitura, alteração e exclusão de contatos para o sistema
-
-* **Estrutura de dados:** [Contatos](#ti_ed_contatos)
+* **Estrutura de dados:** historico e sumario
 * **Instruções de acesso:**
   * Abra o site e efetue o login
-  * Acesse o menu principal e escolha a opção Cadastros
-  * Em seguida, escolha a opção Contatos
 * **Tela da funcionalidade**:
 
-![Tela de Funcionalidade](images/exemplo-funcionalidade.png)
+![Tela de Funcionalidade](images/acoes.png)
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Apresente cada uma das funcionalidades que a aplicação fornece tanto para os usuários quanto aos administradores da solução.
->
-> Inclua, para cada funcionalidade, itens como: (1) titulos e descrição da funcionalidade; (2) Estrutura de dados associada; (3) o detalhe sobre as instruções de acesso e uso.
+A página exibe o valor da carteira e o desempenho ao longo do tempo
 
 ## Estruturas de Dados
 
 Descrição das estruturas de dados utilizadas na solução com exemplos no formato JSON.Info
 
-##### Estrutura de Dados - Contatos   ⚠️ EXEMPLO ⚠️
+##### Estrutura de Dados
 
-Contatos da aplicação
+Sumario da carteira
 
 ```json
   {
-    "id": 1,
-    "nome": "Leanne Graham",
-    "cidade": "Belo Horizonte",
-    "categoria": "amigos",
-    "email": "Sincere@april.biz",
-    "telefone": "1-770-736-8031",
-    "website": "hildegard.org"
-  }
+      "user_id": 1,
+      "valor_carteira": 200,
+      "ultima_atualização": "01/01/2024",
+      "rentabilidade": 0.5,
+      "ultimo_ganho": 0.3,
+      "id": "1"
+    }
   
 ```
 
-##### Estrutura de Dados - Usuários  ⚠️ EXEMPLO ⚠️
-
-Registro dos usuários do sistema utilizados para login e para o perfil do sistema
+Histórico da carteira
 
 ```json
   {
-    id: "eed55b91-45be-4f2c-81bc-7686135503f9",
-    email: "admin@abc.com",
-    id: "eed55b91-45be-4f2c-81bc-7686135503f9",
-    login: "admin",
-    nome: "Administrador do Sistema",
-    senha: "123"
-  }
+      "id": "1",
+      "user_id": 1,
+      "valor_carteira": 200,
+      "data": "01/01/2024"
+    }
+  
 ```
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Apresente as estruturas de dados utilizadas na solução tanto para dados utilizados na essência da aplicação quanto outras estruturas que foram criadas para algum tipo de configuração
->
-> Nomeie a estrutura, coloque uma descrição sucinta e apresente um exemplo em formato JSON.
->
-> **Orientações:**
->
-> * [JSON Introduction](https://www.w3schools.com/js/js_json_intro.asp)
-> * [Trabalhando com JSON - Aprendendo desenvolvimento web | MDN](https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript/Objects/JSON)
+##### Funcionalidade 2 - Perfil do investidor
 
-## Módulos e APIs
+* **Estrutura de dados:** comportamento
+* **Instruções de acesso:**
+  * Abra o site e efetue o login e clique em perfil
+* **Tela da funcionalidade**:
 
-Esta seção apresenta os módulos e APIs utilizados na solução
+![Tela de Funcionalidade](images/perfil.png)
 
-**Images**:
+A página permite o usuário montar seu perfil de investidor
 
-* Unsplash - [https://unsplash.com/](https://unsplash.com/) ⚠️ EXEMPLO ⚠️
+## Estruturas de Dados
 
-**Fonts:**
+Descrição das estruturas de dados utilizadas na solução com exemplos no formato JSON.Info
 
-* Icons Font Face - [https://fontawesome.com/](https://fontawesome.com/) ⚠️ EXEMPLO ⚠️
+##### Estrutura de Dados
 
-**Scripts:**
+Perfil do usuário
 
-* jQuery - [http://www.jquery.com/](http://www.jquery.com/) ⚠️ EXEMPLO ⚠️
-* Bootstrap 4 - [http://getbootstrap.com/](http://getbootstrap.com/) ⚠️ EXEMPLO ⚠️
+```json
+  {
+      "id_usuario": 1,
+      "nome_usuario": "Victor Guimaraes",
+      "pergunta": "1",
+      "resposta": "a",
+      "classificacao": "Moderado",
+      "id": "4ccf"
+    }
+  
+```
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Apresente os módulos e APIs utilizados no desenvolvimento da solução. Inclua itens como: (1) Frameworks, bibliotecas, módulos, etc. utilizados no desenvolvimento da solução; (2) APIs utilizadas para acesso a dados, serviços, etc.
+##### Funcionalidade 3 - Artigos
 
-# Referências
+* **Estrutura de dados:** artigos
+* **Instruções de acesso:**
+  * Abra o site e efetue o login e clique em pesquisa
+* **Tela da funcionalidade**:
 
-As referências utilizadas no trabalho foram:
+![Tela de Funcionalidade](images/artigo.png)
 
-* SOBRENOME, Nome do autor. Título da obra. 8. ed. Cidade: Editora, 2000. 287 p ⚠️ EXEMPLO ⚠️
+A página permite o usuário consultar artigos
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho.
->
-> **Orientações**:
->
-> - [Formato ABNT](https://www.normastecnicas.com/abnt/trabalhos-academicos/referencias/)
-> - [Referências Bibliográficas da ABNT](https://comunidade.rockcontent.com/referencia-bibliografica-abnt/)
+## Estruturas de Dados
+
+Descrição das estruturas de dados utilizadas na solução com exemplos no formato JSON.Info
+
+##### Estrutura de Dados
+
+Artigos
+
+```json
+  {
+      "id": "0",
+      "titulo": "Título do Artigo",
+      "subTitulo": "Subtítulo do Artigo",
+      "contAp": "Conteúdo de Apresentação do Artigo",
+      "contIn": "Conteúdo Informativo do Artigo",
+      "autoria": "Nome do Autor",
+      "data": "2024-10-24",
+      "imagem": "https://imagens.com"
+    }
+  
+```
+
+##### Funcionalidade 4 - Entradas
+
+* **Estrutura de dados:** entrada
+* **Instruções de acesso:**
+  * Abra o site e efetue o login e clique em entradas
+* **Tela da funcionalidade**:
+
+![Tela de Funcionalidade](images/entrada.png)
+
+A página permite o usuário ver seus investimentos
+
+## Estruturas de Dados
+
+Descrição das estruturas de dados utilizadas na solução com exemplos no formato JSON.Info
+
+##### Estrutura de Dados
+
+Entradas
+
+```json
+  {
+      "id": "9f52",
+      "nome": "Parcela do agiota",
+      "valor": 300,
+      "tipo": "gasto",
+      "usuario_id": 1,
+      "recorrente": true,
+      "data": 1730112173084
+    }
+  
+```
