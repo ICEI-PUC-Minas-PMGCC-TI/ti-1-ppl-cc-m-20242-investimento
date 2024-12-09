@@ -7,8 +7,7 @@ const links = [
     { id: 'linkPerfil', base: '/modulos/perfil/perfilInvestidor.html' },
     { id: 'linkPesquisa', base: '/modulos/artigo/painelArtigo.html' },
     { id: 'linkEntradas', base: '/modulos/entradas/entradas.html' },
-    { id: 'linkAjuda', base: '/modulos/forum/portalDuvidas.html' },
-    { id: 'linkNovoArtigo', base: 'cadastroArtigo.html'}
+    { id: 'linkAjuda', base: '/modulos/forum/portalDuvidas.html' }
 ];
 
 // Update each link's href attribute
