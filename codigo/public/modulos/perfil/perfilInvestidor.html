@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Investidor</title>
+    <link rel="stylesheet" href="../../assets/css/forum-styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="../../assets/images/logo.png" alt="Valor A+ Logo" class="logo">
+            <h1>Valor A+ Fórum</h1>
+        </div>
+        <ul>
+            <li><a id="linkInicio" href="acoes.html">PAGINA INICIAL</a></li>
+            <li><a id="linkPerfil" href="perfilInvestidor.html">PERFIL</a></li>
+            <li><a id="linkPesquisa" href="painelArtigo.html">PESQUISA</a></li>
+            <li><a id="linkEntradas" href="entradas.html">ENTRADAS</a></li>
+            <li><a id="linkAjuda" href="portalDuvidas.html">AJUDA</a></li>
+        </ul>
+    </header>
+
+    <div class="container">
+        <form id="questionario">
+            <div class="pergunta active" id="pergunta-1">
+                <p>1. Qual é o seu nível de conhecimento sobre investimentos?</p>
+                <input type="radio" id="q1-a" name="q1" value="1">
+                <label for="q1-a">Nenhum ou muito pouco</label><br>
+                <input type="radio" id="q1-b" name="q1" value="2">
+                <label for="q1-b">Intermediário</label><br>
+                <input type="radio" id="q1-c" name="q1" value="3">
+                <label for="q1-c">Avançado</label>
+            </div>
+
+            <div class="pergunta" id="pergunta-2">
+                <p>2. Qual é o seu objetivo principal ao investir?</p>
+                <input type="radio" id="q2-a" name="q2" value="1">
+                <label for="q2-a">Preservar o capital (evitar perdas)</label><br>
+                <input type="radio" id="q2-b" name="q2" value="2">
+                <label for="q2-b">Equilibrar segurança e crescimento</label><br>
+                <input type="radio" id="q2-c" name="q2" value="3">
+                <label for="q2-c">Maximizar o retorno, mesmo com risco de perdas</label>
+            </div>
+
+            <div class="pergunta" id="pergunta-3">
+                <p>3. Como você se sentiria se seu investimento sofresse uma perda de 10% em um mês?
+                </p>
+                <input type="radio" id="q3-a" name="q3" value="1">
+                <label for="q3-a">Muito desconfortável</label><br>
+                <input type="radio" id="q3-b" name="q3" value="2">
+                <label for="q3-b">Um pouco preocupado, mas manteria o investimento</label><br>
+                <input type="radio" id="q3-c" name="q3" value="3">
+                <label for="q3-c">Faz parte, desde que possa haver recuperação no longo prazo
+                </label>
+            </div>
+
+            <div class="pergunta" id="pergunta-4">
+                <p>4. Por quanto tempo você está disposto a deixar seu dinheiro investido?</p>
+                <input type="radio" id="q4-a" name="q4" value="1">
+                <label for="q4-a">Nenhum ou muito pouco</label><br>
+                <input type="radio" id="q4-b" name="q4" value="2">
+                <label for="q4-b">Intermediário</label><br>
+                <input type="radio" id="q4-c" name="q4" value="3">
+                <label for="q4-c">Avançado</label>
+            </div>
+
+            <div class="pergunta" id="pergunta-5">
+                <p>5. Qual porcentagem do seu capital você está disposto a alocar em ativos de maior risco (como ações ou criptomoedas)?</p>
+                <input type="radio" id="q5-a" name="q5" value="1">
+                <label for="q5-a">Menos de 10%</label><br>
+                <input type="radio" id="q5-b" name="q5" value="2">
+                <label for="q5-b">Entre 10% e 30%</label><br>
+                <input type="radio" id="q5-c" name="q5" value="3">
+                <label for="q5-c">Mais de 30%</label>
+            </div>
+
+            
+
+
+            <button type="button" id="next-btn">Próxima</button>
+            <button type="button" id="restart-btn">Reiniciar</button>
+        </form>
+        <div class="chart-container">
+            <canvas id="classificationChart" width="400" height="200"></canvas>
+        </div>
+    </div>
+
+    <script src="../../assets/js/perfilInvestidor.js"></script>
+    <script src="../../assets/js/populateNavbar.js"></script>
+    
+    <style>
+        body {
+    background-color: white;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #6a98b1;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    width: 50px;
+    margin-right: 20px;
+}
+
+header h1 {
+    color: white;
+    font-size: 24px;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.container {
+    margin-top: 100px;
+    width: 80%;
+    max-width: 600px;
+}
+
+form {
+    background-color: #6a98b1;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+}
+
+.pergunta {
+    display: none; 
+    margin-bottom: 15px;
+}
+
+.pergunta.active {
+    display: block; 
+}
+
+button {
+    background-color: white;
+    color: cornflowerblue;
+    border: 2px solid cornflowerblue;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+    background-color: rgb(98, 133, 199);
+    color: white;
+}
+
+#restart-btn {
+    margin-top: 20px;
+    display: none;
+}
+
+canvas {
+    -webkit-user-select: none;
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
+}
+
+#classificationChart {
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
+}
+
+.chart-container {
+    pointer-events: none; 
+}
+
+    </style>
+</body>
+</html>

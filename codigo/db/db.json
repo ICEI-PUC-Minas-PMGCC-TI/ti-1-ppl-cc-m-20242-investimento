@@ -116,7 +116,7 @@
       "nome": "Parcela do agiota",
       "valor": 300,
       "tipo": "gasto",
-      "usuario_id": "12345",
+      "usuario_id": 1,
       "recorrente": true,
       "data": 1730112173084
     },
@@ -126,7 +126,7 @@
       "valor": 3000,
       "valor_renda": 150,
       "tipo": "investimento",
-      "usuario_id": "12345",
+      "usuario_id": 1,
       "recorrente": true,
       "data": 1730112187214
     },
@@ -136,7 +136,7 @@
       "valor": 40000,
       "valor_renda": 3000,
       "tipo": "investimento",
-      "usuario_id": "12345",
+      "usuario_id": 1,
       "recorrente": true,
       "data": 1730112245652
     },
@@ -145,7 +145,7 @@
       "nome": "Tigrinho",
       "valor": 200,
       "tipo": "gasto",
-      "usuario_id": "12345",
+      "usuario_id": 1,
       "recorrente": true,
       "data": 1730117059749
     },
@@ -155,7 +155,7 @@
       "valor": 2000,
       "valor_renda": 2100,
       "tipo": "investimento",
-      "usuario_id": "12345",
+      "usuario_id": 1,
       "recorrente": true,
       "data": 1730125472264
     },
@@ -164,7 +164,7 @@
       "nome": "Carnê",
       "valor": 100,
       "tipo": "gasto",
-      "usuario_id": "12345",
+      "usuario_id": 1,
       "recorrente": true,
       "data": 1730128653551
     },
@@ -173,7 +173,7 @@
       "nome": "Tigrinho",
       "valor": 40,
       "tipo": "gasto",
-      "usuario_id": "12345",
+      "usuario_id": 1,
       "recorrente": true,
       "data": 1733405364914
     },
@@ -185,6 +185,25 @@
       "usuario_id": 1,
       "recorrente": true,
       "data": 1733405425372
+    },
+    {
+      "id": "921a",
+      "nome": "20",
+      "valor": 30,
+      "tipo": "gasto",
+      "usuario_id": 1,
+      "recorrente": true,
+      "data": 1733702402907
+    },
+    {
+      "id": "4a0f",
+      "nome": "1000",
+      "valor": 1000,
+      "valor_renda": 5,
+      "tipo": "investimento",
+      "usuario_id": 1,
+      "recorrente": true,
+      "data": 1733702418660
     }
   ],
   "artigos": [
@@ -251,19 +270,19 @@
   ],
   "historico": [
     {
-      "id": 1,
+      "id": "1",
       "user_id": 1,
       "valor_carteira": 200,
       "data": "01/01/2024"
     },
     {
-      "id": 2,
+      "id": "2",
       "user_id": 1,
       "valor_carteira": 200,
       "data": "02/01/2024"
     },
     {
-      "id": 3,
+      "id": "3",
       "user_id": 1,
       "valor_carteira": 300,
       "data": "03/01/2024"
@@ -276,12 +295,12 @@
       "ultima_atualização": "01/01/2024",
       "rentabilidade": 0.5,
       "ultimo_ganho": 0.3,
-      "id": 1
+      "id": "1"
     }
   ],
   "comportamento": [
     {
-      "id_usuario": "1",
+      "id_usuario": 1,
       "nome_usuario": "Victor Guimaraes",
       "pergunta": "1",
       "resposta": "a",
@@ -289,7 +308,7 @@
       "id": "4ccf"
     },
     {
-      "id_usuario": "2",
+      "id_usuario": 2,
       "nome_usuario": "Fulano",
       "pergunta": "2",
       "resposta": "b",
@@ -297,12 +316,71 @@
       "id": "91b2"
     },
     {
-      "id_usuario": "3",
+      "id_usuario": 3,
       "nome_usuario": "Ciclano",
       "pergunta": "3",
       "resposta": "a",
       "classificacao": "Arriscado",
       "id": "0ba4"
+    }
+  ],
+  "forum": [
+    {
+      "id_thread": "1",
+      "titulo": "Dúvidas sobre declaração de imposto de renda",
+      "autor": "Maria Souza",
+      "categoria": "financas-pessoais",
+      "conteudo": "Alguem conhece algum corretor para me ajudar a declarar imposto de renda corretamente?",
+      "respostas": "3",
+      "visualizacoes": "87",
+      "id": "3fdd"
+    },
+    {
+      "id_thread": "2",
+      "titulo": "Melhores estratégias de investimento em 2024",
+      "autor": "João Silva",
+      "categoria": "financas-pessoais",
+      "conteudo": "Oi, sou novo aqui e gostaria de saber se é melhor ser arriscado ou moderado para investir nesse ano",
+      "respostas": "3",
+      "visualizacoes": "87",
+      "id": "a0b3"
+    }
+  ],
+  "threads": [
+    {
+      "id": 1,
+      "titulo": "Dúvidas sobre declaração de imposto de renda",
+      "autor": "Maria Souza",
+      "categoria": "financas-pessoais",
+      "conteudo": "Alguém conhece algum corretor para me ajudar a declarar imposto de renda corretamente?",
+      "respostas": "3",
+      "visualizacoes": "87",
+      "createdAt": "2024-12-01T10:30:00Z"
+    },
+    {
+      "id": "458d",
+      "title": "Bitcoin",
+      "content": "Devo dar all in no mercado de bitcoin agora?",
+      "category": "investimentos",
+      "author": "Usuário",
+      "createdAt": "2024-12-09T01:28:09.357Z",
+      "replies": [
+        {
+          "author": "Usuário",
+          "content": "a",
+          "createdAt": "2024-12-09T01:58:12.642Z"
+        }
+      ],
+      "views": 0
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "threadId": "1",
+      "autor": "João Silva",
+      "conteudo": "Recomendo procurar um contador especializado em investimentos!",
+      "createdAt": "2024-12-01T11:00:00Z"
     }
   ]
 }

@@ -20,9 +20,12 @@
     <header>
         <img src="../../assets/images/logo.png" alt="Logo do site" class="logo">
         <ul>
-            <li><a href="">PAGINA INICIA</a>L</li>
-            <li><a href="">GUIA DE OPÇÕES</a></li>
-            <li><a href="painelArtigo.html">PESQUISA</a></li>
+            <li><a id="linkInicio" href="acoes.html">PAGINA INICIAL</a></li>
+            <li><a id="linkPerfil" href="perfilInvestidor.html">PERFIL</a></li>
+            <li><a id="linkPesquisa" href="painelArtigo.html">PESQUISA</a></li>
+            <li><a id="linkEntradas" href="entradas.html">ENTRADAS</a></li>
+            <li><a id="linkAjuda" href="portalDuvidas.html">AJUDA</a></li>
+            <li><a id="linkNovoArtigo" href="cadastroArtigo.html">NOVO ARTIGO</a></li>
         </ul>
     </header>
 
@@ -82,6 +85,7 @@
             .catch(error => console.error('Erro ao carregar artigos:', error));
 
     </script>
+    <script src="../../assets/js/populateNavbar.js"></script>
 </body>
 
 </html>

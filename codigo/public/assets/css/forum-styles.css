@@ -1,0 +1,390 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    background-color: white;
+    color: #333;
+}
+
+.forum-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+header {
+    background-color: #6a98b1;
+    padding: 10px 20px; 
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0; 
+    width: 100%;
+    z-index: 1000;
+    margin-bottom: 50px;
+}
+.header-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+header h1 {
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    width: 100%;
+}
+ul li {
+    display: inline-flex;
+    padding: 0px 40px;
+    justify-content: space-evenly;
+}
+header ul li {
+    padding: 0px 30px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-container .logo {
+    margin-left: 10px;
+    margin-right: 20px;
+    border-radius: 35%;
+    width: 50px;
+    height: auto;
+}
+
+.user-actions button {
+    background-color: white;
+    color: #6a98b1;
+    border: 2px solid #6a98b1;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.user-actions button:hover {
+    background-color: #6a98b1;
+    color: white;
+}
+
+.forum-header {
+    background-color: #b2c3cc;
+    padding: 15px;
+    margin-top: 80px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.forum-header h2 {
+    color: #093070;
+    font-size: 30px;
+    border-bottom: 1px solid #c1c1c1;
+    padding-bottom: 5px;
+}
+
+.search-create-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+#searchInput {
+    padding: 10px;
+    margin-right: 15px;
+    border: 1px solid #6a98b1;
+    border-radius: 4px;
+    width: 300px;
+}
+
+#createThreadBtn {
+    background-color: cornflowerblue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#createThreadBtn:hover {
+    background-color: rgb(98, 133, 199);
+}
+
+/* Threads Container */
+.threads-container {
+    background-color: #c9d0d4;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.thread-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: white;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.thread-detail-content {
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #d0d7dd;
+    border-radius: 0 0 10px 10px;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.thread-detail-header {
+    background-color: #e9f1f5;
+    padding: 20px;
+    border-bottom: 1px solid #d0d7dd;
+    border-radius: 10px 10px 0 0;
+}
+
+.thread-detail-header h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #093070;
+    margin-bottom: 10px;
+}
+
+.thread-detail-stats {
+    display: flex;
+    gap: 15px;
+    color: #093070;
+    font-size: 0.9em;
+    margin-bottom: 20px;
+}
+
+#threadDetailContainer{
+    margin-top: 70px;
+}
+
+
+.thread-details h3 {
+    color: #6a98b1;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.thread-details {
+    color: #6a98b1;
+    font-size: 0.9em;
+}
+
+.thread-detail-meta {
+    display: flex;
+    gap: 20px;
+    font-size: 0.9em;
+    color: #6a98b1;
+}
+
+.thread-stats {
+    display: flex;
+    align-items: center;
+    color: #093070;
+}
+
+.thread-detail-stats span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.thread-stats span {
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: cornflowerblue;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 20px;
+    width: 80%;
+    max-width: 600px;
+    color: white;
+}
+
+.close-modal {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#newThreadForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#newThreadForm input,
+#newThreadForm textarea,
+#newThreadForm select {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 10px;
+    background-color: white;
+    color: cornflowerblue;
+}
+
+#newThreadForm textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+#newThreadForm button {
+    background-color: white;
+    color: cornflowerblue;
+    border: 2px solid white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#newThreadForm button:hover {
+    background-color: rgb(98, 133, 199);
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .forum-container {
+        padding: 10px;
+    }
+
+    .search-create-container {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    #searchInput {
+        margin-right: 0;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+    }
+}
+
+/* Comments Section Styling */
+.comments-section {
+    margin-top: 30px;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.comments-section h3 {
+    color: #093070;
+    border-bottom: 1px solid #c1c1c1;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.comment {
+    background-color: white;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 5px;
+}
+
+.comment-author {
+    font-weight: bold;
+    color: #6a98b1;
+}
+
+.comment-date {
+    color: #888;
+    font-size: 0.8em;
+}
+
+.comment-content {
+    line-height: 1.6;
+}
+
+.comment-form {
+    margin-top: 20px;
+}
+
+.comment-form textarea {
+    width: 100%;
+    min-height: 100px;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #6a98b1;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+.comment-form button {
+    background-color: cornflowerblue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.comment-form button:hover {
+    background-color: rgb(98, 133, 199);
+}
+
+@media (max-width: 768px) {
+    .comment-header {
+        flex-direction: column;
+    }
+
+    .comment-author, 
+    .comment-date {
+        margin-bottom: 5px;
+    }
+}
