@@ -1,61 +1,35 @@
 class ForumManager {
     constructor() {
-        this.threads = JSON.parse(localStorage.getItem('forumThreads')) || [
-            {
-                id: 1,
-                title: 'Melhores estratégias de investimento em 2024',
-                author: 'João Silva',
-                category: 'investimentos',
-                content: 'Quais são as estratégias de investimento mais promissoras para este ano?',
-                createdAt: new Date('2024-01-15T10:30:00'),
-                replies: 5,
-                views: 124
+        this.apiBaseUrl = 'http://localhost:3000/threads';
+    }
+
+    async fetchThreads() {
+        const response = await fetch(this.apiBaseUrl);
+        if (!response.ok) {
+            throw new Error('Erro ao carregar tópicos');
+        }
+        return await response.json();
+    }
+
+    async createThread(threadData) {
+        const response = await fetch(this.apiBaseUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
             },
-            {
-                id: 2,
-                title: 'Dúvidas sobre declaração de imposto de renda',
-                author: 'Maria Souza',
-                category: 'financas-pessoais',
-                content: 'Preciso de orientações sobre como declarar investimentos na minha declaração.',
-                createdAt: new Date('2024-02-01T14:45:00'),
-                replies: 3,
-                views: 87
-            }
-        ];
-    }
+            body: JSON.stringify(threadData)
+        });
 
-    saveThreads() {
-        localStorage.setItem('forumThreads', JSON.stringify(this.threads));
-    }
+        if (!response.ok) {
+            throw new Error('Erro ao criar tópico');
+        }
 
-    createThread(threadData) {
-        const newThread = {
-            id: this.threads.length + 1,
-            title: threadData.title,
-            author: 'Usuário Atual', 
-            category: threadData.category,
-            content: threadData.content,
-            createdAt: new Date(),
-            replies: 0,
-            views: 0
-        };
-
-        this.threads.unshift(newThread);
-        this.saveThreads();
-        return newThread;
-    }
-
-    searchThreads(query) {
-        query = query.toLowerCase();
-        return this.threads.filter(thread => 
-            thread.title.toLowerCase().includes(query) || 
-            thread.content.toLowerCase().includes(query)
-        );
+        return await response.json();
     }
 
     renderThreads(threads) {
         const container = document.getElementById('threadsContainer');
-        container.innerHTML = ''; 
+        container.innerHTML = '';
 
         threads.forEach(thread => {
             const threadElement = document.createElement('div');
@@ -64,23 +38,20 @@ class ForumManager {
                 <div class="thread-details">
                     <h3 class="thread-link" data-thread-id="${thread.id}">${thread.title}</h3>
                     <div class="thread-meta">
-                        Por ${thread.author} | 
-                        Categoria: ${thread.category} | 
+                        Por ${thread.author} | Categoria: ${thread.category} |
                         ${new Date(thread.createdAt).toLocaleDateString()}
                     </div>
                 </div>
                 <div class="thread-stats">
-                    <span><img src="assets/images/comments-icon.png" alt="Respostas"> ${thread.replies}</span>
-                    <span><img src="assets/images/views-icon.png" alt="Visualizações"> ${thread.views}</span>
+                    <span>Respostas: ${thread.replies}</span>
+                    <span>Visualizações: ${thread.views}</span>
                 </div>
             `;
             container.appendChild(threadElement);
 
             const threadLink = threadElement.querySelector('.thread-link');
             threadLink.addEventListener('click', () => {
-                thread.views++;
-                this.saveThreads();
-
+                // This will pass the thread ID to the URL and redirect
                 window.location.href = `discussaoDuvidas.html?id=${thread.id}`;
             });
         });
@@ -89,59 +60,46 @@ class ForumManager {
 
 const forumManager = new ForumManager();
 
-document.addEventListener('DOMContentLoaded', () => {
-    forumManager.renderThreads(forumManager.threads);
-
-    const searchInput = document.getElementById('searchInput');
-    searchInput.addEventListener('input', (e) => {
-        const query = e.target.value;
-        const filteredThreads = forumManager.searchThreads(query);
-        forumManager.renderThreads(filteredThreads);
-    });
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const threads = await forumManager.fetchThreads();
+        forumManager.renderThreads(threads);
+    } catch (error) {
+        alert('Erro ao carregar os tópicos');
+        console.error(error);
+    }
 
     const createThreadBtn = document.getElementById('createThreadBtn');
-    const createThreadModal = document.getElementById('createThreadModal');
-    const closeModalBtn = document.querySelector('.close-modal');
-    const newThreadForm = document.getElementById('newThreadForm');
-
     createThreadBtn.addEventListener('click', () => {
-        createThreadModal.style.display = 'block';
+        document.getElementById('createThreadModal').style.display = 'block';
     });
 
-    closeModalBtn.addEventListener('click', () => {
-        createThreadModal.style.display = 'none';
+    const modalCloseBtn = document.querySelector('.close-modal');
+    modalCloseBtn.addEventListener('click', () => {
+        document.getElementById('createThreadModal').style.display = 'none';
     });
 
-    window.addEventListener('click', (e) => {
-        if (e.target === createThreadModal) {
-            createThreadModal.style.display = 'none';
-        }
-    });
-
-
-    newThreadForm.addEventListener('submit', (e) => {
+    const newThreadForm = document.getElementById('newThreadForm');
+    newThreadForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const threadTitle = document.getElementById('threadTitle').value;
-        const threadContent = document.getElementById('threadContent').value;
-        const threadCategory = document.getElementById('threadCategory').value;
+        const threadData = {
+            title: document.getElementById('threadTitle').value,
+            content: document.getElementById('threadContent').value,
+            category: document.getElementById('threadCategory').value,
+            author: 'Usuário',
+            createdAt: new Date().toISOString(),
+            replies: 0,
+            views: 0
+        };
 
-        if (!threadTitle || !threadContent || !threadCategory) {
-            alert('Por favor, preencha todos os campos.');
-            return;
+        try {
+            await forumManager.createThread(threadData);
+            alert('Tópico criado com sucesso!');
+            window.location.reload();
+        } catch (error) {
+            alert('Erro ao criar o tópico');
+            console.error(error);
         }
-
-        const newThread = forumManager.createThread({
-            title: threadTitle,
-            content: threadContent,
-            category: threadCategory
-        });
-
-        forumManager.renderThreads(forumManager.threads);
-
-        newThreadForm.reset();
-        createThreadModal.style.display = 'none';
     });
-
-
 });
