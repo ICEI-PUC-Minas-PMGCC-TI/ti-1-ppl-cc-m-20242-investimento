@@ -204,6 +204,15 @@
       "usuario_id": "1",
       "recorrente": true,
       "data": 1733702418660
+    },
+    {
+      "id": "1234",
+      "nome": "Gasolina",
+      "valor": 100,
+      "tipo": "gasto",
+      "usuario_id": "1",
+      "recorrente": true,
+      "data": 1733712143374
     }
   ],
   "artigos": [
@@ -322,6 +331,42 @@
       "resposta": "a",
       "classificacao": "Arriscado",
       "id": "0ba4"
+    },
+    {
+      "id": "88de",
+      "comportamento": [
+        {
+          "id_usuario": "1",
+          "nome_usuario": "Victor Guimaraes",
+          "pergunta": "1",
+          "classificacao": "Conservador"
+        },
+        {
+          "id_usuario": "1",
+          "nome_usuario": "Victor Guimaraes",
+          "pergunta": "2",
+          "classificacao": "Moderado"
+        },
+        {
+          "id_usuario": "1",
+          "nome_usuario": "Victor Guimaraes",
+          "pergunta": "3",
+          "classificacao": "Arriscado"
+        },
+        {
+          "id_usuario": "1",
+          "nome_usuario": "Victor Guimaraes",
+          "pergunta": "4",
+          "classificacao": "Arriscado"
+        },
+        {
+          "id_usuario": "1",
+          "nome_usuario": "Victor Guimaraes",
+          "pergunta": "5",
+          "classificacao": "Arriscado"
+        }
+      ],
+      "mediaClassificacoes": "Moderado"
     }
   ],
   "forum": [
@@ -348,7 +393,7 @@
   ],
   "threads": [
     {
-      "id": 1,
+      "id": "1",
       "titulo": "Dúvidas sobre declaração de imposto de renda",
       "autor": "Maria Souza",
       "categoria": "financas-pessoais",
